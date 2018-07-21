@@ -71,10 +71,10 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 `getWobbleHeight()`
 
-`getWobbleMask(int ResId)`
+`setWobbleMask(int ResId)`
 
 `getWobbleMesh()`
 
-`getWobbleMeshBitmapMask()`
+`getWobbleMask()`
 
 `getWobble()`
