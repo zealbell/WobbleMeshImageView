@@ -34,6 +34,61 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        />
 ```
 
+```xml
+   <linkersoft.blackpanther.wobble.WobbleMeshImageView
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_gravity="center"
+       android:id="@+id/wobbler"
+       android:src="@drawable/dwayne_mesh"
+       app:wobbleRows="8"
+       app:wobbleColumns="8"
+       app:drawMeshGrid="true"
+       />
+```
+
+```xml
+   <linkersoft.blackpanther.wobble.WobbleMeshImageView
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_gravity="center"
+       android:id="@+id/wobbler"
+       android:src="@drawable/dwayne_mesh"
+       app:wobbleRows="8"
+       app:wobbleColumns="8"
+       app:wobble="[c]2#(10,0)"
+       app:drawMeshGrid="true"
+       />
+```
+
+```xml
+   <linkersoft.blackpanther.wobble.WobbleMeshImageView
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_gravity="center"
+       android:id="@+id/wobbler"
+       android:src="@drawable/dwayne_mesh"
+       app:wobbleRows="8"
+       app:wobbleColumns="8"
+       app:wobble="[r]2#(10,0)"
+       app:drawMeshGrid="true"
+       />
+```
+
+```xml
+   <linkersoft.blackpanther.wobble.WobbleMeshImageView
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_gravity="center"
+       android:id="@+id/wobbler"
+       android:src="@drawable/dwayne_mesh"
+       app:wobbleRows="8"
+       app:wobbleColumns="8"
+       app:wobble="[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
+       app:drawMeshGrid="true"
+       />
+```
+
 > **JAVA**
 
   ```java
@@ -63,18 +118,18 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
   ```
 > public-methods
 
-`setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`
+> `setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`
 
-`setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble)`
+> `setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble)`
 
-`getWobbleWidth()`
+> `getWobbleWidth()`
 
-`getWobbleHeight()`
+> `getWobbleHeight()`
 
-`setWobbleMask(int ResId)`
+> `setWobbleMask(int ResId)`
 
-`getWobbleMesh()`
+> `getWobbleMesh()`
 
-`getWobbleMask()`
+> `getWobbleMask()`
 
-`getWobble()`
+> `getWobble()`

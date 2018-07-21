@@ -18,12 +18,9 @@ public class wobble extends AppCompatActivity {
         woah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bitmap WobbleMask=woah.getWobbleMeshBitmapMask();
-//                woah.setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),WobbleMask,null);
-//                woah.disposeWobbleMask();
-
-//                woah.setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),woah.getWobbleMesh(),null);
-//                woah.disposeWobbleMask();
+                Bitmap WobbleMask=woah.setWobbleMask(R.drawable.wobble_mask0);
+                woah.setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),WobbleMask,null);
+                woah.disposeWobbleMask();
             }
         });
 

@@ -11,7 +11,6 @@ import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 import linkersoft.blackpanther.wobble.utils.util;
@@ -86,17 +85,8 @@ public class WobbleMeshImageView extends ImageView {
                 }
             }
         }if(Wobble!=null){
-    /*
-       row(y)=>y-shift | column(x)=>x-shift
-
-       [column]Index#(x-shift,y-shift)~
-       [row]Index#(x-shift,y-shift)~
-       [row|column]row-Index,column-Index#(x-shift,y-shift)
-     */
             if(Wobble.contains("drawable")){
-                BitmapFactory.Options IgnoreDpi=new BitmapFactory.Options();
-                IgnoreDpi.inScaled=false;
-                Bitmap WobbleVerticeBitmap=BitmapFactory.decodeResource(getResources(),getResId(Wobble,getContext()),IgnoreDpi);
+                Bitmap WobbleVerticeBitmap = setWobbleMask(getResId(Wobble,getContext()));
                 setWobbleMesh(WobbleWidth,WobbleHeight, WobbleVerticeBitmap,null);
             }else {
                 int xShift,yShift;
@@ -217,25 +207,22 @@ public class WobbleMeshImageView extends ImageView {
         }setWobbleMesh(WobbleWidth,WobbleHeight,wobbleVerts,Wobble);
 
     }
-
     public int getWobbleWidth() {
         return WobbleWidth;
     }
     public int getWobbleHeight() {
         return WobbleHeight;
     }
+    public Bitmap setWobbleMask(int ResId){
+        BitmapFactory.Options IgnoreDpi=new BitmapFactory.Options();
+        IgnoreDpi.inScaled=false;
+        Bitmap WobbleVerticeBitmap=BitmapFactory.decodeResource(getResources(),ResId,IgnoreDpi);
+        return WobbleVerticeBitmap;
+    }
     public float[] getWobbleMesh(){
         return wobbleVerts;
     }
-    private int getWobbCell(int x,int y){
-        int cell=(y*(WobbleWidth+1))+x;
-        return cell*2;
-    }
-    private int getResId(String drawableRef, Context context) {
-        String rsrcName = drawableRef.split("res/drawable/")[1].split(".png")[0];
-        return context.getResources().getIdentifier(rsrcName, "drawable", context.getPackageName());
-    }
-    public Bitmap getWobbleMeshBitmapMask(){
+    public Bitmap setWobbleMask(){
         int cellno,xXx,yYy;
         Bitmap WobbleMaskBitmap =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
         for (int y = 0; y <= WobbleHeight; y++) {
@@ -258,6 +245,15 @@ public class WobbleMeshImageView extends ImageView {
         }
     }
 
+    private int getWobbCell(int x,int y){
+        int cell=(y*(WobbleWidth+1))+x;
+        return cell*2;
+    }
+    private int getResId(String drawableRef, Context context) {
+        String rsrcName = drawableRef.split("res/drawable/")[1].split(".png")[0];
+        return context.getResources().getIdentifier(rsrcName, "drawable", context.getPackageName());
+    }
+
     @Override
     public String toString() {
         return "@LiNKeR(>_<)~"+super.toString();
@@ -274,3 +270,9 @@ public class WobbleMeshImageView extends ImageView {
 
 
 }
+
+/*
+
+
+
+ */
