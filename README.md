@@ -10,7 +10,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 ## Quick Start
 
-> Gradle
+> **GRADLE**
 
 ```xml
    dependencies {
@@ -18,7 +18,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
     }
 ```
 
-> XML
+> **XML**
 
 ```xml
     <linkersoft.blackpanther.wobble.WobbleMeshImageView
@@ -34,7 +34,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        />
 ```
 
-> JAVA
+> **JAVA**
 
   ```java
   
@@ -61,3 +61,13 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 }
   
   ```
+> public-methods
+
+     `setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`
+     `setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble)`
+     `getWobbleWidth()`
+     `getWobbleHeight()`
+     `getWobbleMask(int ResId)`
+     `getWobbleMesh()`
+     `getWobbleMeshBitmapMask()`
+     `getWobble()`
