@@ -63,11 +63,18 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
   ```
 > public-methods
 
-     `setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`
-     `setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble)`
-     `getWobbleWidth()`
-     `getWobbleHeight()`
-     `getWobbleMask(int ResId)`
-     `getWobbleMesh()`
-     `getWobbleMeshBitmapMask()`
-     `getWobble()`
+`setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`
+
+`setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble)`
+
+`getWobbleWidth()`
+
+`getWobbleHeight()`
+
+`getWobbleMask(int ResId)`
+
+`getWobbleMesh()`
+
+`getWobbleMeshBitmapMask()`
+
+`getWobble()`
