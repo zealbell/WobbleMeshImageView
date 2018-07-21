@@ -4,10 +4,6 @@ WobbleImageView
 =============
 An Imageview with an easy Wobble/Mesh-Warp  capability.
 
-## Appearance
-
-![Demo](shots/appearance.gif)
-
 ## Quick Start
 
 > **GRADLE**
@@ -20,19 +16,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 > **XML**
 
-```xml
-    <linkersoft.blackpanther.wobble.WobbleMeshImageView
-       android:layout_width="200dp"
-       android:layout_height="200dp"
-       android:layout_gravity="center"
-       android:id="@+id/wobbler"
-       android:src="@drawable/dwayne_mesh"
-       app:wobbleRows="8"
-       app:wobbleColumns="8"
-       app:wobble="@drawable/wobble_mask2"
-       app:drawMeshGrid="false"
-       />
-```
+![wobb0](shots/wobb0.png)
 
 ```xml
    <linkersoft.blackpanther.wobble.WobbleMeshImageView
@@ -47,6 +31,8 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        />
 ```
 
+![wobb1](shots/wobb1.png)
+
 ```xml
    <linkersoft.blackpanther.wobble.WobbleMeshImageView
        android:layout_width="200dp"
@@ -56,10 +42,12 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        android:src="@drawable/dwayne_mesh"
        app:wobbleRows="8"
        app:wobbleColumns="8"
-       app:wobble="[c]2#(10,0)"
+       app:wobble="[c]2#(25,0)"
        app:drawMeshGrid="true"
        />
 ```
+
+![wobb2](shots/wobb2.png)
 
 ```xml
    <linkersoft.blackpanther.wobble.WobbleMeshImageView
@@ -75,8 +63,24 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        />
 ```
 
+![wobb3](shots/wobb3.png)
+
 ```xml
    <linkersoft.blackpanther.wobble.WobbleMeshImageView
+          android:layout_width="200dp"
+          android:layout_height="200dp"
+          android:layout_gravity="center"
+          android:id="@+id/wobbler"
+          android:src="@drawable/dwayne_mesh"
+          app:wobbleRows="8"
+          app:wobbleColumns="8"
+          app:wobble="[c]2#(30,0)~[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
+          app:drawMeshGrid="true"
+          />
+```
+
+```xml
+    <linkersoft.blackpanther.wobble.WobbleMeshImageView
        android:layout_width="200dp"
        android:layout_height="200dp"
        android:layout_gravity="center"
@@ -84,10 +88,12 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        android:src="@drawable/dwayne_mesh"
        app:wobbleRows="8"
        app:wobbleColumns="8"
-       app:wobble="[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
-       app:drawMeshGrid="true"
+       app:wobble="@drawable/your_wobble_mask"
+       app:drawMeshGrid="false"
        />
 ```
+
+![wobb](shots/wobb.png)
 
 > **JAVA**
 

@@ -16,8 +16,7 @@
        android:src="@drawable/dwayne_mesh"
        app:wobbleRows="8"
        app:wobbleColumns="8"
-       app:wobble="[c]2#(10,0)~[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
+       app:wobble="[c]2#(30,0)~[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
        app:drawMeshGrid="true"
        />
-
 </FrameLayout>
