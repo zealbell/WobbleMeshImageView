@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="linkersoft.blackpanther.wobblemeshimageview.wobble">
+
+
+   app:wobble="[c]2#(10,0)~[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
+   <linkersoft.blackpanther.wobble.WobbleMeshImageView
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_gravity="center"
+       android:id="@+id/wobbler"
+       android:src="@drawable/dwayne_mesh"
+       app:wobbleRows="8"
+       app:wobbleColumns="8"
+       app:wobble="@drawable/wobble_mask2"
+       app:drawMeshGrid="false"
+       />
+
+</FrameLayout>

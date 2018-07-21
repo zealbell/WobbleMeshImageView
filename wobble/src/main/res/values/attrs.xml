@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="WobbleMeshImageView">
+        <attr name="wobbleRows" format="string"/>
+        <attr name="wobbleColumns" format="string"/>
+        <attr name="drawMeshGrid" format="boolean"/>
+        <attr name="wobble" format="string"/>
+    </declare-styleable>
+</resources>
