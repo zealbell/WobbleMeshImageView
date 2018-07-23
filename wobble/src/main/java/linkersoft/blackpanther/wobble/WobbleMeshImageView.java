@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 import linkersoft.blackpanther.wobble.utils.util;
 
 
@@ -24,7 +26,7 @@ public class WobbleMeshImageView extends ImageView {
     private int WobbleWidth;
     private boolean drawMeshGrid,reset;
     float[] wobbleVerts;
-    float xGap,yGap;
+
 
     
     public WobbleMeshImageView(Context context) {
@@ -51,7 +53,7 @@ public class WobbleMeshImageView extends ImageView {
     }
 
     Canvas CHUCKY;
-    Bitmap WASSABI,WobbleMaskBitmap;
+    Bitmap WASSABI, WobbleMask;
     int W,H;
     Paint PAN=new Paint(){
         {
@@ -62,23 +64,23 @@ public class WobbleMeshImageView extends ImageView {
 
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas CANVAS){
         if((W= getWidth())==0||(H =getHeight())==0)return;
         if(WASSABI ==null){
             WASSABI =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
             CHUCKY = new Canvas(WASSABI);
         }super.onDraw(CHUCKY);
-        canvas.drawBitmap(WobbleBitmap(WASSABI),0,0,null);
+        WobbleBitmap(WASSABI,CANVAS);
     }
 
-    private Bitmap WobbleBitmap(Bitmap toWobble){
+    private Bitmap WobbleBitmap(Bitmap toWobble,Canvas canvas){
         if(WobbleWidth==0||WobbleHeight==0)throw new IllegalWobblingException();
         int cellno=0;
         if(!reset){
-            yGap=H/(float)WobbleHeight;
-            xGap=W/(float)WobbleWidth;
-            for (int y = 0; y < WobbleHeight+1; y++){
-                for (int x = 0; x < WobbleWidth+1; x++){
+            float yGap=H/(float)WobbleHeight;
+            float xGap=W/(float)WobbleWidth;
+            for (int y = 0; y <= WobbleHeight; y++){
+                for (int x = 0; x <= WobbleWidth; x++){
                     wobbleVerts[cellno]=x*xGap;
                     wobbleVerts[cellno+1]=y*yGap;
                     cellno+=2;
@@ -86,8 +88,8 @@ public class WobbleMeshImageView extends ImageView {
             }
         }if(Wobble!=null){
             if(Wobble.contains("drawable")){
-                Bitmap WobbleVerticeBitmap = setWobbleMask(getResId(Wobble,getContext()));
-                setWobbleMesh(WobbleWidth,WobbleHeight, WobbleVerticeBitmap,null);
+                setWobbleMask(getResId(Wobble,getContext()));
+                setWobbleMesh(WobbleWidth,WobbleHeight, WobbleMask,null);
             }else {
                 int xShift,yShift;
                 String[] wobbleWords=Wobble.split("~");
@@ -136,10 +138,10 @@ public class WobbleMeshImageView extends ImageView {
                     }
                 }
             }
-        }Canvas canvas=new Canvas(toWobble);
-         canvas.drawBitmapMesh(toWobble,WobbleWidth,WobbleHeight,wobbleVerts,0,null,0,null);
-         if(drawMeshGrid) drawMeshGrid(canvas);
-         return toWobble;
+        }
+        canvas.drawBitmapMesh(toWobble,WobbleWidth,WobbleHeight,wobbleVerts,0,null,0,null);
+        if(drawMeshGrid)drawMeshGrid(canvas);
+        return toWobble;
     }
     private void drawMeshGrid(Canvas canvas) {
         int cellno;
@@ -173,6 +175,11 @@ public class WobbleMeshImageView extends ImageView {
     }
 
 
+    public void setWobble(String Wobble){
+        this.Wobble=Wobble;
+        this.reset=true;
+        invalidate();
+    }
     public void setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble){
         if((WobbleWidth+1)*(WobbleHeight+1)*2!=wobbleVerts.length)throw new IllegalWobblingException("((WobbleWidth+1)*(WobbleHeight+1)*2) must be = wobbleVerts.length");
         this.Wobble=Wobble;
@@ -182,30 +189,79 @@ public class WobbleMeshImageView extends ImageView {
         this.reset=true;
        invalidate();
     }
-    public void setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble){
-        this.WobbleMaskBitmap=WobbleMaskBitmap;
-        int cellno=0;
-        int wvW=WobbleMaskBitmap.getWidth();
-        int wvH=WobbleMaskBitmap.getHeight();
+    public void setWobbleMesh(int WobbleWidth,int WobbleHeight,int WobbleMaskResId,String Wobble){
+        WobbleMask= getWobbleMask4rmRes(WobbleMaskResId);
+        setWobbleMesh(WobbleWidth,WobbleHeight,WobbleMask,Wobble);
+    }
+    public void setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMask,String Wobble){
+
+        ArrayList<Float[]>eqWobbVertsLis=new ArrayList<>();//creating an equally-spaced mesh
+        ArrayList<Float[]>inWobbVertsLis=new ArrayList<>();//creating the initial-mesh
+        ArrayList<Float[]>WobbVertsLis=new ArrayList<>();//creating the mesh
+
+        int wvW=WobbleMask.getWidth();
+        int wvH=WobbleMask.getHeight();
         float scaleX=1;
         float scaleY=1;
         if(W!=wvW||H!=wvH){
              scaleX=W/(float)wvW;
              scaleY=H/(float)wvH;
-        }
-        float[] wobbleVerts=new float[(WobbleHeight+1) * (WobbleWidth+1) * 2];
-        for (int y = 0; y < wvH; y++) {
+        }float[] wobbleVerts=new float[(WobbleHeight+1) * (WobbleWidth+1) * 2];
+
+        /*fetching the verts directly from the mask and scaling the coordinates(according 2 the view) 4 the initial mesh*/
+        for (int y = 0,cellno=0; y < wvH; y++) {
             for (int x = 0; x < wvW; x++) {
-                if(WobbleMaskBitmap.getPixel(x,y)==Color.GREEN){
+                if(WobbleMask.getPixel(x,y)==Color.GREEN){
                     if(cellno!=wobbleVerts.length){
-                        wobbleVerts[cellno]=Math.round(x*scaleX);
-                        wobbleVerts[cellno+1]=Math.round(y*scaleY);
+                        inWobbVertsLis.add(new Float[]{x*scaleX,y*scaleY});
                         cellno+=2;
                     }else throw new IllegalWobblingException(" Make sure the number of green pixels in your WobbleMaskResource = (WobbleHeight+1)*(WobbleWidth+1) ");
                 }
             }
-        }setWobbleMesh(WobbleWidth,WobbleHeight,wobbleVerts,Wobble);
+        }
+        /*filling the equally-spaced mesh to help sort the fetched verts 4rm(the initial-mesh) in2 the mesh*/
+        float yGap=H/(float)WobbleHeight;
+        float xGap=W/(float)WobbleWidth;
+        for (int y = 0; y <= WobbleHeight; y++) {
+            for (int x = 0; x <= WobbleWidth; x++)
+            eqWobbVertsLis.add(new Float[]{x * xGap, y * yGap});
+        }
+        /*comparing the equally-spaced mesh and the initial-mesh inorder to sort into the mesh*/
+        Float eqWobb[],inWobb[],distance,closest;
+        for (int i = 0,index=0; i < eqWobbVertsLis.size(); i++) {
+            eqWobb=eqWobbVertsLis.get(i);
+            closest=Float.MAX_VALUE;
+            for (int j = 0; j < inWobbVertsLis.size(); j++) {
+                inWobb=inWobbVertsLis.get(j);
+                distance=Math.abs(distance(eqWobb[0],eqWobb[1],inWobb[0],inWobb[1]));
+                if(distance<closest){
+                    closest=distance;
+                    index=j;
+                }
+            }
+            WobbVertsLis.add(inWobbVertsLis.get(index));
+            inWobbVertsLis.remove(index);
+        }
 
+        /*loading the verts from the mesh*/
+        Float[] wobvert;
+        for (int y = 0,cell=0,cellno=0; y <= WobbleHeight; y++){
+            for (int x = 0; x <= WobbleWidth; x++){
+                wobvert=WobbVertsLis.get(cell);
+                wobbleVerts[cellno]=wobvert[0];
+                wobbleVerts[cellno+1]=wobvert[1];
+                cellno+=2;
+                cell++;
+            }
+        }
+        setWobbleMesh(WobbleWidth,WobbleHeight,wobbleVerts,Wobble);
+        disposeWobbleMask();
+    }
+    private float distance(float x1, float y1, float x2, float y2) {
+        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+    public void setWobbleMask(int ResId){
+        WobbleMask= getWobbleMask4rmRes(ResId);
     }
     public int getWobbleWidth() {
         return WobbleWidth;
@@ -213,35 +269,34 @@ public class WobbleMeshImageView extends ImageView {
     public int getWobbleHeight() {
         return WobbleHeight;
     }
-    public Bitmap setWobbleMask(int ResId){
-        BitmapFactory.Options IgnoreDpi=new BitmapFactory.Options();
-        IgnoreDpi.inScaled=false;
-        Bitmap WobbleVerticeBitmap=BitmapFactory.decodeResource(getResources(),ResId,IgnoreDpi);
-        return WobbleVerticeBitmap;
-    }
     public float[] getWobbleMesh(){
         return wobbleVerts;
     }
-    public Bitmap setWobbleMask(){
+    public Bitmap getWobbleMask(){
         int cellno,xXx,yYy;
-        Bitmap WobbleMaskBitmap =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
+        Bitmap WobbleMask =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
         for (int y = 0; y <= WobbleHeight; y++) {
             for (int x = 0; x <= WobbleWidth; x++) {
                 cellno=getWobbCell(x,y);
                 xXx=(int) wobbleVerts[cellno];
                 yYy=(int) wobbleVerts[cellno+1];
-                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMaskBitmap.setPixel(xXx,yYy,Color.GREEN);
+                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMask.setPixel(xXx,yYy,Color.GREEN);
                 else throw new IllegalWobblingException("Not all wobbleVerts[x,y] pairs can fall on the 'WobbleMeshBitmapMask' call getWobbleMesh() instead to access wobbleVerts[]");
             }
-        }return WobbleMaskBitmap;
+        }return WobbleMask;
+    }
+    private Bitmap getWobbleMask4rmRes(int ResId){
+        BitmapFactory.Options IgnoreDpi=new BitmapFactory.Options();
+        IgnoreDpi.inScaled=false;
+        return BitmapFactory.decodeResource(getResources(),ResId,IgnoreDpi);
     }
     public String getWobble() {
         return Wobble;
     }
-    public void disposeWobbleMask(){
-        if(WobbleMaskBitmap!=null){
-            WobbleMaskBitmap.recycle();
-            WobbleMaskBitmap=null;
+    private void disposeWobbleMask(){
+        if(WobbleMask !=null){
+            WobbleMask.recycle();
+            WobbleMask =null;
         }
     }
 
@@ -270,6 +325,7 @@ public class WobbleMeshImageView extends ImageView {
 
 
 }
+
 
 /*
 
