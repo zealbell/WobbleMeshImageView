@@ -110,9 +110,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
         woah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap WobbleMask=woah.getWobbleMask(R.drawable.your_wobble_mask);
-                woah.setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),WobbleMask,null);
-                woah.disposeWobbleMask();
+                  ((WobbleMeshImageView)v).setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),R.drawable.wobble_mask1,null);
             }
         });
 
