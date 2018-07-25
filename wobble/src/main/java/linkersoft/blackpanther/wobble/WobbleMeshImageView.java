@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import linkersoft.blackpanther.wobble.utils.util;
 
@@ -82,8 +84,10 @@ public class WobbleMeshImageView extends ImageView {
             float xGap=W/(float)WobbleWidth;
             for (int y = 0; y <= WobbleHeight; y++){
                 for (int x = 0; x <= WobbleWidth; x++){
-                    wobbleVerts[cellno]=x*xGap;
-                    wobbleVerts[cellno+1]=y*yGap;
+                    float xG=x*xGap;
+                    float yG=y*yGap;
+                    wobbleVerts[cellno]=(xG>=W)?xG-1:xG;
+                    wobbleVerts[cellno+1]=(yG>=H)?yG-1:yG;
                     cellno+=2;
                 }
             }
@@ -107,15 +111,12 @@ public class WobbleMeshImageView extends ImageView {
                         hasExtra=true;
                         wobbleWords[i]=wobbleWords[i].replace("#"+extra,"");
                     }
-                    Log.i("TAG","wobbleType: "+wobbleType+" wobbleWords[i]: "+wobbleWords[i]+" extra: "+extra);
                     if(wobbleType.contentEquals("r")){
                         String IndexShift[]=wobbleWords[i].split("\\["+wobbleType+"\\]")[1].split("#");
                         int rowIndx=Integer.parseInt(IndexShift[0]);
                         String Shift[]=util.StringIO.getStringsInBetween(IndexShift[1],"\\(","\\)",false,false).split(",");
                         xShift=Integer.parseInt(Shift[0]);
                         yShift=Integer.parseInt(Shift[1]);
-
-
                         if(hasExtra){
                             int xtra=Integer.parseInt(extra);
                             int plus=(xtra>0)?1:-1;
@@ -135,15 +136,12 @@ public class WobbleMeshImageView extends ImageView {
                                 wobbleVerts[cellno+1]+=yShift;
                             }
                         }
-
-
                     }else if(wobbleType.contentEquals("c")){
                         String IndexShift[]=wobbleWords[i].split("\\["+wobbleType+"\\]")[1].split("#");
                         int columnIndx=Integer.parseInt(IndexShift[0]);
                         String Shift[]=util.StringIO.getStringsInBetween(IndexShift[1],"\\(","\\)",false,false).split(",");
                         xShift=Integer.parseInt(Shift[0]);
                         yShift=Integer.parseInt(Shift[1]);
-
                         if(hasExtra){
                             int xtra=Integer.parseInt(extra);
                             int plus=(xtra>0)?1:-1;
@@ -163,7 +161,6 @@ public class WobbleMeshImageView extends ImageView {
                                 wobbleVerts[cellno+1]+=yShift;
                             }
                         }
-
                     }else if(wobbleType.contentEquals("r|c")){
                         wobbleType="r\\|c";
                         String IndexShift[]=wobbleWords[i].split("\\["+wobbleType+"\\]")[1].split("#");
@@ -173,8 +170,6 @@ public class WobbleMeshImageView extends ImageView {
                         String Shift[]=util.StringIO.getStringsInBetween(IndexShift[1],"\\(","\\)",false,false).split(",");
                         xShift=Integer.parseInt(Shift[0]);
                         yShift=Integer.parseInt(Shift[1]);
-
-
                         if(hasExtra){
                             if(extra.contains("c")){
                                 int xtra=Integer.parseInt(extra.split("c")[1]);
@@ -203,7 +198,6 @@ public class WobbleMeshImageView extends ImageView {
                             wobbleVerts[cellno]+=xShift;
                             wobbleVerts[cellno+1]+=yShift;
                         }
-
                     }
                 }
             }
@@ -244,9 +238,6 @@ public class WobbleMeshImageView extends ImageView {
             }
         }
     }
-    private float distance(float x1, float y1, float x2, float y2) {
-        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
     private void setWobbleMask(int ResId){
         WobbleMask= getWobbleMask4rmRes(ResId);
     }
@@ -269,17 +260,50 @@ public class WobbleMeshImageView extends ImageView {
         IgnoreDpi.inScaled=false;
         return BitmapFactory.decodeResource(getResources(),ResId,IgnoreDpi);
     }
-    /*
-    *
-    *
-    *
-     *
-     *
-    | Fruit         | Price                   | Advantages              |
-| ------------- | ----------------------- | ----------------------- |
-| Bananas       | first line<br>next line | first line<br>next line |
-| Bananas       | first line<br>next line | first line<br>next line |
-*/
+    private class TaggedHash<I extends Object,A extends Object> extends HashMap{
+    }
+    private class TaggedList<I extends Object> extends ArrayList{
+        int rowIndex;
+    }
+    private ArrayList<TaggedList<Point>> sortTaggedHash(TaggedHash unsortedRows, ArrayList<Integer> pixelKeys){
+        //sorting inorder of row index
+        ArrayList<TaggedList<Point>> sortedRows=new ArrayList<>();
+        TaggedList<Point> currRow;
+        int Tsz=unsortedRows.size(),smallest,smallestIndex=0;
+        for (int i = 0; i < Tsz; i++) {
+            smallest=Integer.MAX_VALUE;
+            for (int j = 0; j <unsortedRows.size() ; j++) {
+                currRow=(TaggedList<Point>)unsortedRows.get(pixelKeys.get(j));
+                if(currRow.rowIndex<smallest){
+                    smallest=currRow.rowIndex;
+                    smallestIndex=j;
+                }
+            }
+            currRow=(TaggedList<Point>)unsortedRows.get(pixelKeys.get(smallestIndex));
+            sortedRows.add(currRow);
+            unsortedRows.remove(pixelKeys.get(smallestIndex));
+            pixelKeys.remove(smallestIndex);
+        }return sortedRows;
+    }
+    private TaggedList sortTaggedList(TaggedList unsortedList){
+        //sorting inorder of x
+        TaggedList<Point> sortedList=new TaggedList<>();
+        Point currPoint;
+        int Tsz=unsortedList.size(),smallest,smallestIndex=0;
+        for (int i = 0; i < Tsz; i++) {
+            smallest=Integer.MAX_VALUE;
+            for (int j = 0; j <unsortedList.size() ; j++) {
+                currPoint=(Point) unsortedList.get(j);
+                if(currPoint.x<smallest){
+                    smallest=currPoint.x;
+                    smallestIndex=j;
+                }
+            }
+            currPoint=(Point)unsortedList.get(smallestIndex);
+            sortedList.add(currPoint);
+            unsortedList.remove(smallestIndex);
+        }return sortedList;
+    }
 
     public void setWobble(String Wobble){
         this.Wobble=Wobble;
@@ -301,63 +325,47 @@ public class WobbleMeshImageView extends ImageView {
     }
     public void setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMask,String Wobble){
 
-        ArrayList<Float[]>eqWobbVertsLis=new ArrayList<>();//creating an equally-spaced mesh
-        ArrayList<Float[]>inWobbVertsLis=new ArrayList<>();//creating the initial-mesh
-        ArrayList<Float[]>WobbVertsLis=new ArrayList<>();//creating the mesh
-
         int wvW=WobbleMask.getWidth();
         int wvH=WobbleMask.getHeight();
         float scaleX=1;
         float scaleY=1;
+        int rowIndex=0;
         if(W!=wvW||H!=wvH){
-             scaleX=W/(float)wvW;
-             scaleY=H/(float)wvH;
+            scaleX=W/(float)wvW;
+            scaleY=H/(float)wvH;
         }float[] wobbleVerts=new float[(WobbleHeight+1) * (WobbleWidth+1) * 2];
 
-        /*fetching the verts directly from the mask and scaling the coordinates(according 2 the view) 4 the initial mesh*/
-        for (int y = 0,cellno=0; y < wvH; y++) {
+
+        TaggedHash<Integer,TaggedList<Point>> Rows=new TaggedHash<>();
+        TaggedList<Point> currRow;
+        for (int y = 0; y < wvH; y++) {
             for (int x = 0; x < wvW; x++) {
-                if(WobbleMask.getPixel(x,y)==Color.GREEN){
-                    if(cellno!=wobbleVerts.length){
-                        inWobbVertsLis.add(new Float[]{x*scaleX,y*scaleY});
-                        cellno+=2;
-                    }else throw new IllegalWobblingException(" Make sure the number of green pixels in your WobbleMaskResource = (WobbleHeight+1)*(WobbleWidth+1) ");
-                }
+                int pixel=WobbleMask.getPixel(x,y);
+
+                if(pixel!=Color.BLACK){
+                    currRow= (TaggedList<Point>) Rows.get(pixel);
+                    if(currRow==null){
+                        Rows.put(pixel,currRow=new TaggedList());
+                        currRow.rowIndex=rowIndex;
+                        rowIndex++;
+                    } currRow.add(new Point(Math.round(x*scaleX),Math.round(y*scaleY)));
+                      if(currRow.size()>WobbleWidth+1)throw new IllegalWobblingException(" Make sure the number of rgb["+Color.red(pixel)+","+Color.green(pixel)+","+Color.blue(pixel)+"]-pixel row is not > (WobbleWidth+1) ");
+                }if(Rows.size()>WobbleHeight+1)throw new IllegalWobblingException(" Make sure the number of rowPixels is not > (WobbleHeight+1) ");
             }
-        }
-        /*filling the equally-spaced mesh to help sort the fetched verts 4rm(the initial-mesh) in2 the mesh*/
-        float yGap=H/(float)WobbleHeight;
-        float xGap=W/(float)WobbleWidth;
-        for (int y = 0; y <= WobbleHeight; y++) {
-            for (int x = 0; x <= WobbleWidth; x++)
-            eqWobbVertsLis.add(new Float[]{x * xGap, y * yGap});
-        }
-        /*comparing the equally-spaced mesh and the initial-mesh inorder to sort into the mesh*/
-        Float eqWobb[],inWobb[],distance,closest;
-        for (int i = 0,index=0; i < eqWobbVertsLis.size(); i++) {
-            eqWobb=eqWobbVertsLis.get(i);
-            closest=Float.MAX_VALUE;
-            for (int j = 0; j < inWobbVertsLis.size(); j++) {
-                inWobb=inWobbVertsLis.get(j);
-                distance=Math.abs(distance(eqWobb[0],eqWobb[1],inWobb[0],inWobb[1]));
-                if(distance<closest){
-                    closest=distance;
-                    index=j;
-                }
-            }
-            WobbVertsLis.add(inWobbVertsLis.get(index));
-            inWobbVertsLis.remove(index);
         }
 
-        /*loading the verts from the mesh*/
-        Float[] wobvert;
-        for (int y = 0,cell=0,cellno=0; y <= WobbleHeight; y++){
-            for (int x = 0; x <= WobbleWidth; x++){
-                wobvert=WobbVertsLis.get(cell);
-                wobbleVerts[cellno]=wobvert[0];
-                wobbleVerts[cellno+1]=wobvert[1];
+        ArrayList<Integer> pixelKeys=new ArrayList<>(Rows.keySet());
+        for (int i = 0; i < Rows.size(); i++)if(((TaggedList<Point>)Rows.get(pixelKeys.get(i))).size()!=WobbleWidth+1)throw new IllegalWobblingException(" Make sure the size of each rowPixels == (WobbleWidth+1) ");
+        if(Rows.size()!=WobbleHeight+1)throw new IllegalWobblingException(" Make sure the number of rowPixels == (WobbleHeight+1) ");
+
+        ArrayList<TaggedList<Point>> sortRows=sortTaggedHash(Rows,pixelKeys);
+        for (int y = 0,cellno=0; y < sortRows.size(); y++){
+            currRow=sortTaggedList( sortRows.get(y));
+            for (int x = 0; x < currRow.size(); x++) {
+                Point wobvert=(Point)currRow.get(x);
+                wobbleVerts[cellno]=wobvert.x;
+                wobbleVerts[cellno+1]=wobvert.y;
                 cellno+=2;
-                cell++;
             }
         }
         setWobbleMesh(WobbleWidth,WobbleHeight,wobbleVerts,Wobble);
@@ -376,26 +384,32 @@ public class WobbleMeshImageView extends ImageView {
     public Bitmap getWobbleMask(){
         int cellno,xXx,yYy;
         Bitmap WobbleMask =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
-        for (int y = 0; y <= WobbleHeight; y++) {
+        Canvas canvas=new Canvas(WobbleMask);
+        canvas.drawColor(Color.BLACK);
+        int unit_color=Math.round(255F/(WobbleHeight+1));
+        for (int y = 0,unit=unit_color; y <= WobbleHeight; y++) {
             for (int x = 0; x <= WobbleWidth; x++) {
                 cellno=getWobbCell(x,y);
                 xXx=(int) wobbleVerts[cellno];
                 yYy=(int) wobbleVerts[cellno+1];
-                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMask.setPixel(xXx,yYy,Color.GREEN);
+                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMask.setPixel(xXx,yYy,Color.rgb(0,unit,0));
                 else throw new IllegalWobblingException("Not all wobbleVerts[x,y] pairs can fall on the 'WobbleMeshBitmapMask' call getWobbleMesh() instead to access wobbleVerts[]");
-            }
+            }unit+=unit_color;
         }return WobbleMask;
     }
     public Bitmap getWobbleMask(int[] rowColors){
+        if(rowColors.length!=WobbleHeight+1)throw new IllegalWobblingException(" Make sure the size of rowColors == (WobbleHeight+1) ");
         int cellno,xXx,yYy;
         Bitmap WobbleMask =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(WobbleMask);
+        canvas.drawColor(Color.BLACK);
         for (int y = 0; y <= WobbleHeight; y++) {
             for (int x = 0; x <= WobbleWidth; x++) {
                 cellno=getWobbCell(x,y);
                 xXx=(int) wobbleVerts[cellno];
                 yYy=(int) wobbleVerts[cellno+1];
-                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMask.setPixel(xXx,yYy,Color.GREEN);
-                else throw new IllegalWobblingException("Not all wobbleVerts[x,y] pairs can fall on the 'WobbleMeshBitmapMask' call getWobbleMesh() instead to access wobbleVerts[]");
+                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMask.setPixel(xXx,yYy,rowColors[y]);
+                else throw new IllegalWobblingException("Not all wobbleVerts[] (x,y)-pairs can fall on the 'WobbleMeshBitmapMask' call getWobbleMesh() instead to access wobbleVerts[]");
             }
         }return WobbleMask;
     }

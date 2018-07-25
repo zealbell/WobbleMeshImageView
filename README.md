@@ -10,7 +10,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 ```xml
    dependencies {
-        implementation 'com.github.54LiNKeR:WobbleImageView:2.0.0'
+        implementation 'com.github.54LiNKeR:WobbleImageView:1.0.0'
     }
 ```
 
@@ -102,7 +102,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
              android:layout_gravity="center"
              android:id="@+id/wobbler"
              android:src="@drawable/dwayne_mesh"
-             app:wobble="[r[0#(0,25)~[r|c]0,0#(0,10)~[r|c]0,2#(0,-5)~[r|c]0,4#(0,10)~[r|c]0,5#(0,20)~[r|c]0,6#(0,20)~[r|c]0,7#(0,15)~
+             app:wobble="[r]0#(0,15)~[r|c]0,0#(0,10)~[r|c]0,2#(0,-5)~[r|c]0,4#(0,10)~[r|c]0,5#(0,20)~[r|c]0,6#(0,20)~[r|c]0,7#(0,15)~
                          [r]1#(0,15)~[r|c]1,0#(0,10)~[r|c]1,2#(0,-5)~[r|c]1,4#(0,10)~[r|c]1,5#(0,20)~[r|c]1,6#(0,20)~[r|c]1,7#(0,15)~
                          [r]2#(0,10)~[r|c]2,0#(0,10)~[r|c]2,2#(0,-5)~[r|c]2,4#(0,10)~[r|c]2,5#(0,20)~[r|c]2,6#(0,20)~[r|c]2,7#(0,15)~
                          [r]3#(0,5)~[r|c]3,0#(0,10)~[r|c]3,2#(0,-5)~[r|c]3,4#(0,10)~[r|c]3,5#(0,20)~[r|c]3,6#(0,20)~[r|c]3,7#(0,15)~
@@ -161,29 +161,34 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 
   ```java
   
-  public class wobble extends AppCompatActivity {
+     WobbleMeshImageView woah;
 
-    WobbleMeshImageView woah;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.wobble);
-        woah=(WobbleMeshImageView)findViewById(R.id.wobbler);
-        woah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  ((WobbleMeshImageView)v).setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),R.drawable.wobble_mask1,null);
-            }
-        });
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.wobble);
 
-    }
+         final Context context=this;
+         woah=(WobbleMeshImageView)findViewById(R.id.wobbler);
+         woah.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                  Bitmap Mask = woah.getWobbleMask(new int[]{ 0xFFA8A8A8,0xFFBDCBB7,0xFFA3BDBF,
+                                                              0xFFF3F2E6, 0xFFBECEC2,0xFFF4E8F7,
+                                                              0xFFC3D9D9, 0xFF4E4F4F,0xFFFAC8CA });
+                  verifyStoragePermission((Activity)context);
+                  saveMask(Mask,"masquerade.png");
+
+//                woah.setWobbleMesh(woah.getWobbleWidth(),woah.getWobbleHeight(),R.drawable.wobble_mask1,null);
+//                woah.setWobble("[r|c]4,5#(-25,0)");
+             }
+         });
 
 
-}
-  
+     }
 ```
 
-
+>  [`full-source`](app/src/main/java/linkersoft/blackpanther/wobblemeshimageview/wobble.java)
 
 | **abscondees**   | **returnees**  |
 |  :---: | :---: |
