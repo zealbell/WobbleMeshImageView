@@ -49,7 +49,7 @@ This is done via the wobble attribute `app:wobble` and there are three ways to w
 
 
    | Warping | Syntax | Example | # |
-   |----------|---------|--------|---------|
+   |----------|---------|--------|:---:|
    | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)**| cute |
    | by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**| fine |
    | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**| pretty |
@@ -75,7 +75,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
                android:layout_gravity="center"
                android:id="@+id/wobbler"
                android:src="@drawable/dwayne_mesh"
-               app:wobble="[r]3#(15,-10)
+               app:wobble="[r]3#(15,-10)"
                app:wobbleRows="8"
                app:wobbleColumns="8"
                app:drawMeshGrid="true"
@@ -83,7 +83,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 ```
 
    | # | `app:wobble` | Result |
-   |----------|---------|--------|
+   |:---:|---------|--------|
    | cute | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
    | fine | [c]2#(0,10) | <img src="shots/dwayne1.png" width="49%"> |
    | pretty | [r\|c]1,2#(8,15) | <img src="shots/dwayne2.png" width="49%"> |
@@ -185,7 +185,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 
 
 
-| **Public-methods**       | **return**  |
+| **public-methods**       | **returnees**  |
 |  :---: | :---: |
 | `setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`| *void* |
 | `setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMask,String Wobble)`| *void* |
