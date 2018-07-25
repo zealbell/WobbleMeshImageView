@@ -10,11 +10,15 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 ```xml
    dependencies {
-        implementation 'com.github.54LiNKeR:WobbleImageView:1.0.0'
+        implementation 'com.github.54LiNKeR:WobbleImageView:2.0.0'
     }
 ```
 
 > **XML**
+
+**1. Cr8ting The Mesh**
+
+by default this is how create a new mesh over the ImageView
 
 ![wobb0](shots/wobb0.png)
 
@@ -31,69 +35,59 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
        />
 ```
 
+if you like you could load a custom wobble-mesh via the wobble attribute `app:wobble` i.e. `app:wobble=@drawable/your-wobble-mask` but
+your-wobble-mask must be a bitmap in which each row of your mesh is a different color in terms of pixels to the another e.g.
+
 ![wobb1](shots/wobb1.png)
 
-```xml
-   <linkersoft.blackpanther.wobble.WobbleMeshImageView
-       android:layout_width="200dp"
-       android:layout_height="200dp"
-       android:layout_gravity="center"
-       android:id="@+id/wobbler"
-       android:src="@drawable/dwayne_mesh"
-       app:wobbleRows="8"
-       app:wobbleColumns="8"
-       app:wobble="[c]2#(25,0)"
-       app:drawMeshGrid="true"
-       />
-```
+also if your-wobble-mask's dimension is not the same as your ImageView's dimension the mesh is scaled to fit the
+ImageView.
 
-![wobb2](shots/wobb2.png)
+**2. Warping The Mesh**
 
-```xml
-   <linkersoft.blackpanther.wobble.WobbleMeshImageView
-       android:layout_width="200dp"
-       android:layout_height="200dp"
-       android:layout_gravity="center"
-       android:id="@+id/wobbler"
-       android:src="@drawable/dwayne_mesh"
-       app:wobbleRows="8"
-       app:wobbleColumns="8"
-       app:wobble="[r]2#(10,0)"
-       app:drawMeshGrid="true"
-       />
-```
+This is done via the wobble attribute `app:wobble` and there are three ways to warp the ImageView namely:
 
-![wobb3](shots/wobb3.png)
 
-```xml
-   <linkersoft.blackpanther.wobble.WobbleMeshImageView
-          android:layout_width="200dp"
-          android:layout_height="200dp"
-          android:layout_gravity="center"
-          android:id="@+id/wobbler"
-          android:src="@drawable/dwayne_mesh"
-          app:wobbleRows="8"
-          app:wobbleColumns="8"
-          app:wobble="[c]2#(30,0)~[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
-          app:drawMeshGrid="true"
-          />
-```
+   | Reference| Warping | Syntax | Example |
+   |----------|---------|--------|---------|
+   | dwayne0 | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)**|
+   | dwayne1| by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**|
+   | dwayne2 | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**|
 
-```xml
-    <linkersoft.blackpanther.wobble.WobbleMeshImageView
-       android:layout_width="200dp"
-       android:layout_height="200dp"
-       android:layout_gravity="center"
-       android:id="@+id/wobbler"
-       android:src="@drawable/dwayne_mesh"
-       app:wobbleRows="8"
-       app:wobbleColumns="8"
-       app:wobble="@drawable/your_wobble_mask"
-       app:drawMeshGrid="false"
-       />
-```
+in order to Shift multiple rows/columns/nodes at the same time here's how
 
-![wobb](shots/wobb.png)
+- by Shifting the rows
+   - `app:wobble=[r#extra-rowIndices]rowIndex#(xShift,yShift)` e.g. **[r#2]2#(5,-20)**
+- by Shifting the columns
+   - `app:wobble=[c#extra-columnIndices]columnIndex#(xShift,yShift)` e.g. **[c#-2]6#(0,10)** (*the minus indicates direction i.e. 2 columns above the supposed*)
+- by Shifting any node
+   - `app:wobble=[r|c#extra-nodes]rowIndex,columnIndex#(xShift,yShift)` e.g. **[r\|c#r2]1,2#(8,15)**,**[r\|c#c3]1,2#(8,15)** (*r2 = 2 extra nodes along corresponding row, c3 = 3 extra nodes along corresponding column*)
+
+       - **Examples**
+            - Given you have
+
+       ```xml
+          <linkersoft.blackpanther.wobble.WobbleMeshImageView
+              android:layout_width="200dp"
+              android:layout_height="200dp"
+              android:layout_gravity="center"
+              android:id="@+id/wobbler"
+              android:src="@drawable/dwayne_mesh"
+              app:wobbleRows="8"
+              app:wobbleColumns="8"
+              app:wobble="..."
+              app:drawMeshGrid="true"
+              />
+       ```
+
+   | Reference | `app:wobble` | Result |
+   |----------|---------|--------|
+   | dwayne0 | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
+   | dwayne1 | [c]2#(0,10) | <img src="shots/dwayne1.png" width="49%"> |
+   | dwayne2 | [r\|c]1,2#(8,15) | <img src="shots/dwayne2.png" width="49%"> |
+   | dwayne0+dwayne2+dwayne2 | [r]2#(5,-20)~[c]2#(0,10)~[r\|c]1,2#(8,15) | <img src="shots/dwayne3.png" width="49%"> |
+
+
 
 > **JAVA**
 

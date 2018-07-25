@@ -7,28 +7,17 @@
     tools:context="linkersoft.blackpanther.wobblemeshimageview.wobble">
 
 
-   app:wobble="[c]2#(10,0)~[r|c]1,8#(10,20)~[r|c]2,4#(10,-20)"
-   <!--<linkersoft.blackpanther.wobble.WobbleMeshImageView-->
-       <!--android:layout_width="200dp"-->
-       <!--android:layout_height="200dp"-->
-       <!--android:layout_gravity="center"-->
-       <!--android:id="@+id/wobbler"-->
-       <!--android:src="@drawable/dwayne_mesh"-->
-       <!--app:wobbleRows="28"-->
-       <!--app:wobbleColumns="28"-->
-       <!--app:wobble="[c]0#(5,0)~[c]1#(10,0)~[c]2#(5,0)~[c]3#(5,0)~[c]4#(5,0)~[c]5#(5,0)~[c]6#(5,0)~[c]7#(5,0)~[c]8#(5,0)~[c]9#(5,0)~[c]10#(5,0)~[c]11#(5,0)~[c]12#(5,0)~[c]13#(5,0)~[c]14#(5,0)~[c]15#(10,0)~[c]16#(8,0)"-->
-       <!--app:drawMeshGrid="false"-->
-       <!--/>-->
+
    <linkersoft.blackpanther.wobble.WobbleMeshImageView
        android:layout_width="200dp"
        android:layout_height="200dp"
        android:layout_gravity="center"
        android:id="@+id/wobbler"
        android:src="@drawable/dwayne_mesh"
-       app:wobble="@drawable/wobble_mask1"
+       app:wobble="[r]2#(5,-20)~[c]2#(0,10)~[r\|c]1,2#(8,15)"
        app:wobbleRows="8"
        app:wobbleColumns="8"
        app:drawMeshGrid="true"
-
        />
+
 </FrameLayout>

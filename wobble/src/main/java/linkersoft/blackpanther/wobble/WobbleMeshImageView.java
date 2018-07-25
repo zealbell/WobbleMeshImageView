@@ -11,6 +11,7 @@ import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -91,10 +92,32 @@ public class WobbleMeshImageView extends ImageView {
                 setWobbleMask(getResId(Wobble,getContext()));
                 setWobbleMesh(WobbleWidth,WobbleHeight, WobbleMask,null);
             }else {
+                //samples
+                // [c]2#(10,0)   column 2 by x=>10 and y=> 0
+                // [c#-1]2#(10,0)   column 2 and column (2-1) by x=>10 and y=> 0
+                // [r|c]1,8#(10,20) cell @ (1,8) by x=>10 and y=> 20
+                // [r|c#c2]1,8#(10,20)cells @ (1,8),(1,9),(1,10) by x=>10 and y=> 20
+                // [r|c#c-2]1,8#(10,20)cells @ (1,8),(1,7),(1,6) by x=>10 and y=> 20
+                // [r]4#(6,5)   row 4 by x=>6 and y=> 5
+                // [r#-3]5#(6,5)   row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5
+                // [r#3]5#(6,5)   row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5
+
                 int xShift,yShift;
+                boolean hasExtra;
+                String extra=null;
                 String[] wobbleWords=Wobble.split("~");
                 for (int i = 0; i < wobbleWords.length; i++){
+                    wobbleWords[i]=wobbleWords[i].trim();
                     String wobbleType= util.StringIO.getStringsInBetween(wobbleWords[i],"\\[","\\]",false,false);
+                    hasExtra =false;
+                    if(wobbleType.contains("#")){
+                        String[] splice=wobbleType.split("#");
+                        extra=splice[1];
+                        wobbleType=splice[0];
+                        hasExtra=true;
+                        wobbleWords[i]=wobbleWords[i].replace("#"+extra,"");
+                    }
+                    Log.i("TAG","wobbleType: "+wobbleType+" wobbleWords[i]: "+wobbleWords[i]+" extra: "+extra);
                     if(wobbleType.contentEquals("r")){
                         String IndexShift[]=wobbleWords[i].split("\\["+wobbleType+"\\]")[1].split("#");
                         int rowIndx=Integer.parseInt(IndexShift[0]);
@@ -102,12 +125,28 @@ public class WobbleMeshImageView extends ImageView {
                         xShift=Integer.parseInt(Shift[0]);
                         yShift=Integer.parseInt(Shift[1]);
 
-                        if(rowIndx>WobbleHeight)throw new IllegalWobblingException("Index in '[row]Index#(x-shift,y-shift)' must be <= (WobbleHeight="+(WobbleHeight-1)+")");
-                        for (int x = 0; x <= WobbleWidth; x++) {
-                            cellno=getWobbCell(x,rowIndx);
-                            wobbleVerts[cellno]+=xShift;
-                            wobbleVerts[cellno+1]+=yShift;
+
+                        if(hasExtra){
+                            int xtra=Integer.parseInt(extra);
+                            int plus=(xtra>0)?1:-1;
+                                   for (int j = 0; j < Math.abs(xtra)+1; j++) {
+                                       if (rowIndx <0||rowIndx > WobbleHeight)throw new IllegalWobblingException("Index in '[row]Index#(x-shift,y-shift)' must be <= (WobbleHeight=" + (WobbleHeight - 1) + ")");
+                                       for (int x = 0; x <= WobbleWidth; x++) {
+                                           cellno = getWobbCell(x, rowIndx);
+                                           wobbleVerts[cellno] += xShift;
+                                           wobbleVerts[cellno + 1] += yShift;
+                                       }rowIndx += plus;
+                                   }
+                        }else {
+                            if(rowIndx <0||rowIndx>WobbleHeight)throw new IllegalWobblingException("Index in '[row]Index#(x-shift,y-shift)' must be <= (WobbleHeight="+(WobbleHeight-1)+")");
+                            for (int x = 0; x <= WobbleWidth; x++) {
+                                cellno=getWobbCell(x,rowIndx);
+                                wobbleVerts[cellno]+=xShift;
+                                wobbleVerts[cellno+1]+=yShift;
+                            }
                         }
+
+
                     }else if(wobbleType.contentEquals("c")){
                         String IndexShift[]=wobbleWords[i].split("\\["+wobbleType+"\\]")[1].split("#");
                         int columnIndx=Integer.parseInt(IndexShift[0]);
@@ -115,12 +154,26 @@ public class WobbleMeshImageView extends ImageView {
                         xShift=Integer.parseInt(Shift[0]);
                         yShift=Integer.parseInt(Shift[1]);
 
-                        if(columnIndx>WobbleWidth)throw new IllegalWobblingException("Index in '[column]Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+")");
-                        for (int y = 0; y <= WobbleWidth; y++) {
-                            cellno=getWobbCell(columnIndx,y);
-                            wobbleVerts[cellno]+=xShift;
-                            wobbleVerts[cellno+1]+=yShift;
+                        if(hasExtra){
+                            int xtra=Integer.parseInt(extra);
+                            int plus=(xtra>0)?1:-1;
+                            for (int j = 0; j < Math.abs(xtra)+1; j++) {
+                                if(columnIndx <0||columnIndx>WobbleWidth)throw new IllegalWobblingException("Index in '[column]Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+")");
+                                for (int y = 0; y <= WobbleWidth; y++) {
+                                    cellno=getWobbCell(columnIndx,y);
+                                    wobbleVerts[cellno]+=xShift;
+                                    wobbleVerts[cellno+1]+=yShift;
+                                }columnIndx += plus;
+                            }
+                        }else {
+                            if(columnIndx <0||columnIndx>WobbleWidth)throw new IllegalWobblingException("Index in '[column]Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+")");
+                            for (int y = 0; y <= WobbleWidth; y++) {
+                                cellno=getWobbCell(columnIndx,y);
+                                wobbleVerts[cellno]+=xShift;
+                                wobbleVerts[cellno+1]+=yShift;
+                            }
                         }
+
                     }else if(wobbleType.contentEquals("r|c")){
                         wobbleType="r\\|c";
                         String IndexShift[]=wobbleWords[i].split("\\["+wobbleType+"\\]")[1].split("#");
@@ -131,10 +184,36 @@ public class WobbleMeshImageView extends ImageView {
                         xShift=Integer.parseInt(Shift[0]);
                         yShift=Integer.parseInt(Shift[1]);
 
-                        if(columnIndx>WobbleWidth||rowIndx>WobbleHeight)throw new IllegalWobblingException("Index(row,column) in '[row|column]row-Index,column-Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+") && <= (WobbleHeight="+(WobbleHeight-1)+")");
-                        cellno=getWobbCell(columnIndx,rowIndx);
-                        wobbleVerts[cellno]+=xShift;
-                        wobbleVerts[cellno+1]+=yShift;
+
+                        if(hasExtra){
+                            if(extra.contains("c")){
+                                int xtra=Integer.parseInt(extra.split("c")[1]);
+                                int plus=(xtra>0)?1:-1;
+                                for (int j = 0; j < Math.abs(xtra)+1; j++) {
+                                    if(rowIndx <0||columnIndx <0||columnIndx>WobbleWidth||rowIndx>WobbleHeight)throw new IllegalWobblingException("Index(row,column) in '[row|column]row-Index,column-Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+") && <= (WobbleHeight="+(WobbleHeight-1)+")");
+                                    cellno=getWobbCell(columnIndx,rowIndx);
+                                    wobbleVerts[cellno]+=xShift;
+                                    wobbleVerts[cellno+1]+=yShift;
+                                    rowIndx+= plus;
+                                }
+                            }else if(extra.contains("r")){
+                                int xtra=Integer.parseInt(extra.split("r")[1]);
+                                int plus=(xtra>0)?1:-1;
+                                for (int j = 0; j < Math.abs(xtra)+1; j++) {
+                                    if(rowIndx <0||columnIndx <0||columnIndx>WobbleWidth||rowIndx>WobbleHeight)throw new IllegalWobblingException("Index(row,column) in '[row|column]row-Index,column-Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+") && <= (WobbleHeight="+(WobbleHeight-1)+")");
+                                    cellno=getWobbCell(columnIndx,rowIndx);
+                                    wobbleVerts[cellno]+=xShift;
+                                    wobbleVerts[cellno+1]+=yShift;
+                                    columnIndx+= plus;
+                                }
+                            }
+                        }else {
+                            if(rowIndx <0||columnIndx <0||columnIndx>WobbleWidth||rowIndx>WobbleHeight)throw new IllegalWobblingException("Index(row,column) in '[row|column]row-Index,column-Index#(x-shift,y-shift)' must be <= (WobbleWidth="+(WobbleWidth-1)+") && <= (WobbleHeight="+(WobbleHeight-1)+")");
+                            cellno=getWobbCell(columnIndx,rowIndx);
+                            wobbleVerts[cellno]+=xShift;
+                            wobbleVerts[cellno+1]+=yShift;
+                        }
+
                     }
                 }
             }
@@ -150,7 +229,8 @@ public class WobbleMeshImageView extends ImageView {
         PAN.setStyle(Paint.Style.STROKE);
         for (int y = 0; y <= WobbleHeight; y ++){//drawing-ROWS
             Path path=new Path();
-            path.moveTo(0,y);
+            cellno=getWobbCell(0,y);
+            path.moveTo(wobbleVerts[cellno],wobbleVerts[cellno+1]);
             for (int x = 0; x <=WobbleWidth; x ++){
                 cellno=getWobbCell(x,y);
                 path.lineTo(wobbleVerts[cellno],wobbleVerts[cellno+1]);
@@ -158,7 +238,8 @@ public class WobbleMeshImageView extends ImageView {
         }
         for (int x = 0; x <=WobbleWidth; x ++) {//drawing-COLUMNS
             Path path=new Path();
-            path.moveTo(x,0);
+            cellno=getWobbCell(x,0);
+            path.moveTo(wobbleVerts[cellno],wobbleVerts[cellno+1]);
             for (int y = 0; y <= WobbleHeight; y ++){
                 cellno=getWobbCell(x,y);
                 path.lineTo(wobbleVerts[cellno],wobbleVerts[cellno+1]);
@@ -174,6 +255,35 @@ public class WobbleMeshImageView extends ImageView {
         }
     }
 
+
+    /*
+    *
+    *
+    *  [r|c#r2]0,3#(0,25)~[r|c]0,0#(0,0)~[r|c]0,1#(0,10)~[r|c]0,2#(0,20)~[r|c]0,6#(0,20)~[r|c]0,7#(0,10)~
+                   [r]1#(0,-5)~[r|c#r2]1,3#(0,25)~[r|c]1,0#(0,-15)~[r|c]1,1#(0,10)~[r|c]1,2#(0,20)~[r|c]1,6#(0,20)~[r|c]1,7#(0,10)~[r|c]1,8#(0,-15)~
+                   [r]2#(0,-5)~[r|c#r2]2,3#(0,20)~[r|c]2,0#(0,-10)~[r|c]2,1#(0,5)~[r|c]2,2#(0,15)~[r|c]2,6#(0,15)~[r|c]2,7#(0,5)~[r|c]2,8#(0,-10)~
+                   [r]3#(0,-8)~[r|c#r2]3,3#(0,20)~[r|c]3,0#(0,-10)~[r|c]3,1#(0,5)~[r|c]3,2#(0,15)~[r|c]3,6#(0,15)~[r|c]3,7#(0,5)~[r|c]3,8#(0,-10)~
+
+                   [r]5#(0,8)~[r|c#r2]5,3#(0,-20)~[r|c]5,0#(0,10)~[r|c]5,1#(0,-5)~[r|c]5,2#(0,-15)~[r|c]5,6#(0,-15)~[r|c]5,7#(0,-5)~[r|c]5,8#(0,10)~
+                   [r]6#(0,-5)~[r|c#r2]6,3#(0,-20)~[r|c]6,0#(0,10)~[r|c]6,1#(0,-5)~[r|c]6,2#(0,-15)~[r|c]6,6#(0,-15)~[r|c]6,7#(0,-5)~[r|c]6,8#(0,10)~
+                   [r]7#(0,-5)~[r|c#r2]7,3#(0,-25)~[r|c]7,0#(0,15)~[r|c]7,1#(0,-10)~[r|c]7,2#(0,-20)~[r|c]7,6#(0,-20)~[r|c]7,7#(0,-10)~[r|c]7,8#(0,15)~
+                               [r|c#r2]8,3#(0,-25)~[r|c]8,1#(0,-10)~[r|c]8,2#(0,-20)~[r|c]8,6#(0,-20)~[r|c]8,7#(0,-10)"
+
+
+
+
+                               [r]0#(0,25)~[r|c]0,0#(0,10)~[r|c]0,2#(0,-5)~[r|c]0,4#(0,10)~[r|c]0,5#(0,20)~[r|c]0,6#(0,20)~[r|c]0,7#(0,15)~
+                   [r]1#(0,15)~[r|c]1,0#(0,10)~[r|c]1,2#(0,-5)~[r|c]1,4#(0,10)~[r|c]1,5#(0,20)~[r|c]1,6#(0,20)~[r|c]1,7#(0,15)~
+                   [r]2#(0,10)~[r|c]2,0#(0,10)~[r|c]2,2#(0,-5)~[r|c]2,4#(0,10)~[r|c]2,5#(0,20)~[r|c]2,6#(0,20)~[r|c]2,7#(0,15)~
+                   [r]3#(0,5)~[r|c]3,0#(0,10)~[r|c]3,2#(0,-5)~[r|c]3,4#(0,10)~[r|c]3,5#(0,20)~[r|c]3,6#(0,20)~[r|c]3,7#(0,15)~
+                   [r]4#(0,0)~[r|c]4,0#(0,10)~[r|c]4,2#(0,-5)~[r|c]4,4#(0,10)~[r|c]4,5#(0,20)~[r|c]4,6#(0,20)~[r|c]4,7#(0,15)~
+                   [r]5#(0,-5)~[r|c]5,0#(0,10)~[r|c]5,2#(0,-5)~[r|c]5,4#(0,10)~[r|c]5,5#(0,20)~[r|c]5,6#(0,20)~[r|c]5,7#(0,15)~
+                   [r]6#(0,-10)~[r|c]6,0#(0,10)~[r|c]6,2#(0,-5)~[r|c]6,4#(0,10)~[r|c]6,5#(0,20)~[r|c]6,6#(0,20)~[r|c]6,7#(0,15)~
+                   [r]7#(0,-15)~[r|c]7,0#(0,10)~[r|c]7,2#(0,-5)~[r|c]7,4#(0,10)~[r|c]7,5#(0,20)~[r|c]7,6#(0,20)~[r|c]7,7#(0,15)~
+                   [r]8#(0,-25)~[r|c]8,0#(0,10)~[r|c]8,2#(0,-5)~[r|c]8,4#(0,10)~[r|c]8,5#(0,20)~[r|c]8,6#(0,20)~[r|c]8,7#(0,15)
+
+    *
+    * */
 
     public void setWobble(String Wobble){
         this.Wobble=Wobble;
