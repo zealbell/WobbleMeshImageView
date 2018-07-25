@@ -20,7 +20,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 by default this is how create a new mesh over the ImageView
 
-![wobb0](shots/wobb0.png)
+<img src="shots/wobb0.png" width="49%">
 
 ```xml
    <linkersoft.blackpanther.wobble.WobbleMeshImageView
@@ -48,11 +48,11 @@ ImageView.
 This is done via the wobble attribute `app:wobble` and there are three ways to warp the ImageView namely:
 
 
-   | Reference| Warping | Syntax | Example |
+   | Warping | Syntax | Example | # |
    |----------|---------|--------|---------|
-   | dwayne0 | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)**|
-   | dwayne1| by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**|
-   | dwayne2 | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**|
+   | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)**| cute |
+   | by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**| fine |
+   | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**| pretty |
 
 in order to Shift multiple rows/columns/nodes at the same time here's how
 
@@ -63,34 +63,36 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 - by Shifting any node
    - `app:wobble=[r|c#extra-nodes]rowIndex,columnIndex#(xShift,yShift)` e.g. **[r\|c#r2]1,2#(8,15)**,**[r\|c#c3]1,2#(8,15)** (*r2 = 2 extra nodes along corresponding row, c3 = 3 extra nodes along corresponding column*)
 
-       - **Examples**
-            - Given you have
+## Examples
 
-       ```xml
-          <linkersoft.blackpanther.wobble.WobbleMeshImageView
-              android:layout_width="200dp"
-              android:layout_height="200dp"
-              android:layout_gravity="center"
-              android:id="@+id/wobbler"
-              android:src="@drawable/dwayne_mesh"
-              app:wobbleRows="8"
-              app:wobbleColumns="8"
-              app:wobble="..."
-              app:drawMeshGrid="true"
-              />
-       ```
+# 1. Simple Ones
 
+```xml
 
+        <linkersoft.blackpanther.wobble.WobbleMeshImageView
+               android:layout_width="200dp"
+               android:layout_height="200dp"
+               android:layout_gravity="center"
+               android:id="@+id/wobbler"
+               android:src="@drawable/dwayne_mesh"
+               app:wobble="[r]3#(15,-10)
+               app:wobbleRows="8"
+               app:wobbleColumns="8"
+               app:drawMeshGrid="true"
+               />
+```
 
+ - You may also want to try out **=>**
 
-   | Reference | `app:wobble` | Result |
+   | # | `app:wobble` | Result |
    |----------|---------|--------|
-   | dwayne0 | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
-   | dwayne1 | [c]2#(0,10) | <img src="shots/dwayne1.png" width="49%"> |
-   | dwayne2 | [r\|c]1,2#(8,15) | <img src="shots/dwayne2.png" width="49%"> |
-   | dwayne0+dwayne2+dwayne2 | [r]2#(5,-20)~[c]2#(0,10)~[r\|c]1,2#(8,15) | <img src="shots/dwayne3.png" width="49%"> |
+   | cute | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
+   | fine | [c]2#(0,10) | <img src="shots/dwayne1.png" width="49%"> |
+   | pretty | [r\|c]1,2#(8,15) | <img src="shots/dwayne2.png" width="49%"> |
+   | cute+fine+pretty | [r]2#(5,-20)~[c]2#(0,10)~[r\|c]1,2#(8,15) | <img src="shots/dwayne3.png" width="49%"> |
 
-  - You may also want to try out**=>**
+
+# 2. Complex Ones
 
 <img src="shots/dwayne5.png" width="49%">
 
@@ -142,8 +144,19 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
             />
 ```
 
+> Just incase all have said is Jargon, here are some samples with some more meaningful meanings
 
-
+ | sample  | meaning |
+ |---------|---------|
+ | [c]0#(0,5) | shift column 0 by x=>0 and y=> 5  |
+ | [c]2#(10,0) | shift column 2 by x=>10 and y=> 0  |
+ | [c#-1]2#(10,0) | shift column 2 and column (2-1) by x=>10 and y=> 0 |
+ | [r|c]1,8#(10,20) | shift node @ (1,8) by x=>10 and y=> 20 |
+ | [r|c#c2]1,8#(10,20) | shift nodes @ (1,8),(1,9),(1,10) by x=>10 and y=> 20 |
+ | [r|c#c-2]1,8#(10,20) | shift nodes @ (1,8),(1,7),(1,6) by x=>10 and y=> 20 |
+ | [r]4#(6,5) | shift row 4 by x=>6 and y=> 5 |
+ | [r#-3]5#(6,5) | shift row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5 |
+ | [r#3]5#(6,5) | shift row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5 |
 
 
 > **JAVA**

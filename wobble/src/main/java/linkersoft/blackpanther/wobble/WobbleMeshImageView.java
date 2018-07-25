@@ -92,16 +92,6 @@ public class WobbleMeshImageView extends ImageView {
                 setWobbleMask(getResId(Wobble,getContext()));
                 setWobbleMesh(WobbleWidth,WobbleHeight, WobbleMask,null);
             }else {
-                //samples
-                // [c]2#(10,0)   column 2 by x=>10 and y=> 0
-                // [c#-1]2#(10,0)   column 2 and column (2-1) by x=>10 and y=> 0
-                // [r|c]1,8#(10,20) cell @ (1,8) by x=>10 and y=> 20
-                // [r|c#c2]1,8#(10,20)cells @ (1,8),(1,9),(1,10) by x=>10 and y=> 20
-                // [r|c#c-2]1,8#(10,20)cells @ (1,8),(1,7),(1,6) by x=>10 and y=> 20
-                // [r]4#(6,5)   row 4 by x=>6 and y=> 5
-                // [r#-3]5#(6,5)   row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5
-                // [r#3]5#(6,5)   row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5
-
                 int xShift,yShift;
                 boolean hasExtra;
                 String extra=null;
@@ -266,23 +256,7 @@ public class WobbleMeshImageView extends ImageView {
 | ------------- | ----------------------- | ----------------------- |
 | Bananas       | first line<br>next line | first line<br>next line |
 | Bananas       | first line<br>next line | first line<br>next line |
-
-
-
-
-
-                               [r]0#(0,25)~[r|c]0,0#(0,10)~[r|c]0,2#(0,-5)~[r|c]0,4#(0,10)~[r|c]0,5#(0,20)~[r|c]0,6#(0,20)~[r|c]0,7#(0,15)~
-                   [r]1#(0,15)~[r|c]1,0#(0,10)~[r|c]1,2#(0,-5)~[r|c]1,4#(0,10)~[r|c]1,5#(0,20)~[r|c]1,6#(0,20)~[r|c]1,7#(0,15)~
-                   [r]2#(0,10)~[r|c]2,0#(0,10)~[r|c]2,2#(0,-5)~[r|c]2,4#(0,10)~[r|c]2,5#(0,20)~[r|c]2,6#(0,20)~[r|c]2,7#(0,15)~
-                   [r]3#(0,5)~[r|c]3,0#(0,10)~[r|c]3,2#(0,-5)~[r|c]3,4#(0,10)~[r|c]3,5#(0,20)~[r|c]3,6#(0,20)~[r|c]3,7#(0,15)~
-                   [r]4#(0,0)~[r|c]4,0#(0,10)~[r|c]4,2#(0,-5)~[r|c]4,4#(0,10)~[r|c]4,5#(0,20)~[r|c]4,6#(0,20)~[r|c]4,7#(0,15)~
-                   [r]5#(0,-5)~[r|c]5,0#(0,10)~[r|c]5,2#(0,-5)~[r|c]5,4#(0,10)~[r|c]5,5#(0,20)~[r|c]5,6#(0,20)~[r|c]5,7#(0,15)~
-                   [r]6#(0,-10)~[r|c]6,0#(0,10)~[r|c]6,2#(0,-5)~[r|c]6,4#(0,10)~[r|c]6,5#(0,20)~[r|c]6,6#(0,20)~[r|c]6,7#(0,15)~
-                   [r]7#(0,-15)~[r|c]7,0#(0,10)~[r|c]7,2#(0,-5)~[r|c]7,4#(0,10)~[r|c]7,5#(0,20)~[r|c]7,6#(0,20)~[r|c]7,7#(0,15)~
-                   [r]8#(0,-25)~[r|c]8,0#(0,10)~[r|c]8,2#(0,-5)~[r|c]8,4#(0,10)~[r|c]8,5#(0,20)~[r|c]8,6#(0,20)~[r|c]8,7#(0,15)
-
-    *
-    * */
+*/
 
     public void setWobble(String Wobble){
         this.Wobble=Wobble;
@@ -434,10 +408,3 @@ public class WobbleMeshImageView extends ImageView {
 
 
 }
-
-
-/*
-
-
-
- */
