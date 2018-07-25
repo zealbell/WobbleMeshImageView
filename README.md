@@ -36,7 +36,8 @@ by default this is how create a new mesh over the ImageView
 ```
 
 if you like you could load a custom wobble-mesh via the wobble attribute `app:wobble` i.e. `app:wobble=@drawable/your-wobble-mask` but
-your-wobble-mask must be a bitmap in which each row of your mesh is a different color in terms of pixels to the other e.g.
+your-wobble-mask must be a bitmap in which each row of your mesh is a collection of pixels corresponding to nodes in the mesh also
+each row of pixel nodes must be a different color from all other rows of pixels that make up the mesh [ **N.B** your node is just 1px in size] e.g.
 
 ![wobb1](shots/wobb1.png)
 
