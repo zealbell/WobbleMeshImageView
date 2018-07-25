@@ -244,8 +244,31 @@ public class WobbleMeshImageView extends ImageView {
             }
         }
     }
-
-
+    private float distance(float x1, float y1, float x2, float y2) {
+        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+    private void setWobbleMask(int ResId){
+        WobbleMask= getWobbleMask4rmRes(ResId);
+    }
+    private void disposeWobbleMask(){
+        if(WobbleMask !=null){
+            WobbleMask.recycle();
+            WobbleMask =null;
+        }
+    }
+    private int getWobbCell(int x,int y){
+        int cell=(y*(WobbleWidth+1))+x;
+        return cell*2;
+    }
+    private int getResId(String drawableRef, Context context) {
+        String rsrcName = drawableRef.split("res/drawable/")[1].split(".png")[0];
+        return context.getResources().getIdentifier(rsrcName, "drawable", context.getPackageName());
+    }
+    private Bitmap getWobbleMask4rmRes(int ResId){
+        BitmapFactory.Options IgnoreDpi=new BitmapFactory.Options();
+        IgnoreDpi.inScaled=false;
+        return BitmapFactory.decodeResource(getResources(),ResId,IgnoreDpi);
+    }
     /*
     *
     *
@@ -340,12 +363,7 @@ public class WobbleMeshImageView extends ImageView {
         setWobbleMesh(WobbleWidth,WobbleHeight,wobbleVerts,Wobble);
         disposeWobbleMask();
     }
-    private float distance(float x1, float y1, float x2, float y2) {
-        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
-    public void setWobbleMask(int ResId){
-        WobbleMask= getWobbleMask4rmRes(ResId);
-    }
+
     public int getWobbleWidth() {
         return WobbleWidth;
     }
@@ -368,29 +386,10 @@ public class WobbleMeshImageView extends ImageView {
             }
         }return WobbleMask;
     }
-    private Bitmap getWobbleMask4rmRes(int ResId){
-        BitmapFactory.Options IgnoreDpi=new BitmapFactory.Options();
-        IgnoreDpi.inScaled=false;
-        return BitmapFactory.decodeResource(getResources(),ResId,IgnoreDpi);
-    }
     public String getWobble() {
         return Wobble;
     }
-    private void disposeWobbleMask(){
-        if(WobbleMask !=null){
-            WobbleMask.recycle();
-            WobbleMask =null;
-        }
-    }
 
-    private int getWobbCell(int x,int y){
-        int cell=(y*(WobbleWidth+1))+x;
-        return cell*2;
-    }
-    private int getResId(String drawableRef, Context context) {
-        String rsrcName = drawableRef.split("res/drawable/")[1].split(".png")[0];
-        return context.getResources().getIdentifier(rsrcName, "drawable", context.getPackageName());
-    }
 
     @Override
     public String toString() {

@@ -185,13 +185,13 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 
 
 
- | **Public-methods**       |
+ | **Public-methods**       | **return**  |
 |  :---: |
-| `setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`|
-| `setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMaskBitmap,String Wobble)`|
-| `getWobbleWidth()`|
-| `getWobbleHeight()`|
-| `setWobbleMask(int ResId)`|
-| `getWobbleMesh()`|
-| `getWobbleMask()`|
-| `getWobble()`|
+| `setWobbleMesh(int WobbleWidth,int WobbleHeight,float[] wobbleVerts,String Wobble)`| *void* |
+| `setWobbleMesh(int WobbleWidth,int WobbleHeight,Bitmap WobbleMask,String Wobble)`| *void* |
+| `setWobbleMesh(int WobbleWidth,int WobbleHeight,int WobbleMaskResId,String Wobble)`| *void* |
+| `getWobbleWidth()`| *int* |
+| `getWobbleHeight()`| *int* |
+| `getWobbleMesh()`| *float[]* |
+| `getWobbleMask()`| *Bitmap* |
+| `getWobble()`| *String* |
