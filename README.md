@@ -144,7 +144,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 
 > Just incase all have said is Jargon, here are some samples with some more meaningful meanings
 
- | sample<br>`app:wobble`  | meaning |
+ | sample<br>`app:wobble` | meaning |
  |---------|---------|
  | [c]0#(0,5) | shift column 0 by x=>0 and y=> 5  |
  | [c]2#(10,0) | shift column 2 by x=>10 and y=> 0  |
