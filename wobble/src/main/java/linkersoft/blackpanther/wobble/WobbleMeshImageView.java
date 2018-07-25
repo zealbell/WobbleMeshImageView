@@ -386,7 +386,7 @@ public class WobbleMeshImageView extends ImageView {
             }
         }return WobbleMask;
     }
-    public Bitmap getWobbleMask(int[] colors){
+    public Bitmap getWobbleMask(int[] rowColors){
         int cellno,xXx,yYy;
         Bitmap WobbleMask =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
         for (int y = 0; y <= WobbleHeight; y++) {

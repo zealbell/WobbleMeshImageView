@@ -194,5 +194,5 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 | `getWobbleHeight()`| *int* |
 | `getWobbleMesh()`| *float[]* |
 | `getWobbleMask()`| *Bitmap* |
-| `getWobbleMask(int[] colors)`| *Bitmap* |
+| `getWobbleMask(int[] rowColors)`| *Bitmap* |
 | `getWobble()`| *String* |
