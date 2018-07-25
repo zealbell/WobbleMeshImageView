@@ -50,9 +50,9 @@ This is done via the wobble attribute `app:wobble` and there are three ways to w
 
    | Reference| Warping | Syntax | Example |
    |----------|---------|--------|---------|
-   | dwayne0 | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)**|
-   | dwayne1| by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**|
-   | dwayne2 | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**|
+   | dwayne0 | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)** |
+   | dwayne1| by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)** |
+   | dwayne2 | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)** |
 
 in order to Shift multiple rows/columns/nodes at the same time here's how
 
@@ -63,7 +63,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 - by Shifting any node
    - `app:wobble=[r|c#extra-nodes]rowIndex,columnIndex#(xShift,yShift)` e.g. **[r\|c#r2]1,2#(8,15)**,**[r\|c#c3]1,2#(8,15)** (*r2 = 2 extra nodes along corresponding row, c3 = 3 extra nodes along corresponding column*)
 
-       - **Examples**
+###**Examples**
             - Given you have
 
        ```xml
@@ -83,7 +83,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 
 
 
-   | Reference | `app:wobble` | Result |
+   | \# | `app:wobble` | Result |
    |----------|---------|--------|
    | dwayne0 | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
    | dwayne1 | [c]2#(0,10) | <img src="shots/dwayne1.png" width="49%"> |
