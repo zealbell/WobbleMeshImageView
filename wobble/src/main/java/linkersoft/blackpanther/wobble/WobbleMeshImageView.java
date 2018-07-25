@@ -386,6 +386,19 @@ public class WobbleMeshImageView extends ImageView {
             }
         }return WobbleMask;
     }
+    public Bitmap getWobbleMask(int[] colors){
+        int cellno,xXx,yYy;
+        Bitmap WobbleMask =Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);
+        for (int y = 0; y <= WobbleHeight; y++) {
+            for (int x = 0; x <= WobbleWidth; x++) {
+                cellno=getWobbCell(x,y);
+                xXx=(int) wobbleVerts[cellno];
+                yYy=(int) wobbleVerts[cellno+1];
+                if((xXx>=0&& xXx<W)&&(yYy>=0&& yYy<H))WobbleMask.setPixel(xXx,yYy,Color.GREEN);
+                else throw new IllegalWobblingException("Not all wobbleVerts[x,y] pairs can fall on the 'WobbleMeshBitmapMask' call getWobbleMesh() instead to access wobbleVerts[]");
+            }
+        }return WobbleMask;
+    }
     public String getWobble() {
         return Wobble;
     }
