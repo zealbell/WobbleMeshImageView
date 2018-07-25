@@ -82,8 +82,6 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
                />
 ```
 
- - You may also want to try out **=>**
-
    | # | `app:wobble` | Result |
    |----------|---------|--------|
    | cute | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
