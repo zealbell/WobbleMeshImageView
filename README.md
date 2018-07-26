@@ -211,8 +211,8 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how:
 | `getWobble()`| *String* |
 
 ## Extra
- Incase you have interest in cr8ting Meshes with say 100 nodes and above and you are accidentally familiar with corel-draw I would be
- providing a [`gist`](https://gist.github.com/54LiNKeR/8764e61c008d357d2cabfea77905746c) where you could use a macro to get coordinates of selected nodes each time. Any time you draw your mesh. I am 
+ Incase you have interest in cr8ting Meshes with say 100 nodes and above and you are accidentally familiar with corel-draw I have
+ provided a [`gist`](https://gist.github.com/54LiNKeR/8764e61c008d357d2cabfea77905746c) where you can use a macro to get coordinates of selected nodes each time. Any time you draw your mesh. I am 
  very aware it might not be so perfect drawing pixel by pixel in corel draw without having dimensions not being exact even after taking
  off the anti-aliasing. but if you use Photoshop I assume you have 5 heads to figure your way around as I have none extra to spare
  or atleast suggest from (My head is in the dustbin, Yes I just cut it off). 
