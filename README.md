@@ -87,11 +87,11 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 ```
 
    | # | `app:wobble` | Result |
-   |:---:|---------|--------|
-   | cute | [r]2#(5,-20) | <img src="shots/dwayne0.png" width="49%"> |
-   | fine | [c]2#(0,10) | <img src="shots/dwayne1.png" width="49%"> |
-   | pretty | [r\|c]1,2#(8,15) | <img src="shots/dwayne2.png" width="49%"> |
-   | cute+fine+pretty | [r]2#(5,-20)~[c]2#(0,10)~[r\|c]1,2#(8,15) | <img src="shots/dwayne3.png" width="49%"> |
+   |:---:|:---:|--------|
+   | cute | `[r]2#(5,-20)` | <img src="shots/dwayne0.png" width="49%"> |
+   | fine | `[c]2#(0,10)` | <img src="shots/dwayne1.png" width="49%"> |
+   | pretty | `[r\|c]1,2#(8,15)` | <img src="shots/dwayne2.png" width="49%"> |
+   | cute+fine+pretty | `[r]2#(5,-20)~[c]2#(0,10)~[r\|c]1,2#(8,15)` | <img src="shots/dwayne3.png" width="49%"> |
 
 
 # 2. Complex Ones
