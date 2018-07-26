@@ -27,7 +27,8 @@ import linkersoft.blackpanther.wobble.WobbleMeshImageView;
 
 public class wobble extends AppCompatActivity {
 
-    WobbleMeshImageView woah;
+    WobbleMeshImageView woah;//Yes I thought about Noah too
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
