@@ -2,7 +2,7 @@
 
 WobbleImageView
 =============
-An Imageview with an easy Wobble/Mesh-Warp  capability(??Well it thinks it does!!).
+An Imageview with an easy Wobble/Mesh-Warp  capability(`Well it thinks it does`).
 
 ## Quick Start
 
@@ -213,7 +213,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
  providing a gist where you could use a macro to get coordinates of selected nodes each time. Any time you draw yout mesh. I am 
  very aware it might not be so perfect drawing pixel by pixel in corel draw without having dimensions not being exact even after taking
  off the anti-aliasing. but if you use Photoshops I assume you have 5 heads to figure your way around as I have none extra to spare
- or atleast suggest from (My head is in the dustbin, Yes I cut it off 2hrs ago). 
+ or atleast suggest from (My head is in the dustbin, Yes I cut it off). 
 
 > If you got here... so fast without listening to 1st Jargon what I was ranting up above... Well that's Sad(\# _\#)! You hurt my feelings... 
 > I honestly thought I was making sense...but now you've confirmed the unwanted.  
