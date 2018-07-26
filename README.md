@@ -18,7 +18,8 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 
 **1. Cr8ting The Mesh**
 
-by default this is how create a new mesh over the ImageView
+ The size of your Mesh is always **=** `(MeshWidth/wobbleColumns+1) * (MeshHeight/wobbleRows+1) * 2` and
+ by default this is how create a new mesh over the ImageView
 
 <img src="shots/wobb0.png" width="49%">
 
@@ -35,9 +36,10 @@ by default this is how create a new mesh over the ImageView
        />
 ```
 
-if you like you could load a custom wobble-mesh via the wobble attribute `app:wobble` i.e. `app:wobble=@drawable/your-wobble-mask` but
-your-wobble-mask must be a bitmap in which each row of your mesh is a collection of pixels corresponding to nodes in the mesh also
-each row of pixel nodes must be a different color from all other rows of pixels that make up the mesh [ **N.B** your node is just 1px in size] e.g.
+If you like you could load a custom wobble-mesh via the wobble attribute `app:wobble` i.e. `app:wobble=@drawable/your-wobble-mask`.
+  
+  - your-wobble-mask must be a bitmap where each row of your mesh is a collection of pixels corresponding its nodes  also
+    each row of pixel nodes must be a different color from all other rows of pixels that make up the mesh [ **N.B** your node is just 1px in size] e.g.
 
 ![wobb1](shots/wobb1.png)
 
