@@ -22,7 +22,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability(Well it thinks it does).
  of fine Jargon until you try your hands on the code... I also found it so too.
 
  The size of your Mesh is always **=** `(MeshWidth/wobbleColumns+1) * (MeshHeight/wobbleRows+1) * 2` and
- by default this is how create a new mesh over the ImageView
+ by default this is how to create a new mesh over the ImageView
 
 <img src="shots/wobb0.png" width="49%">
 
@@ -39,14 +39,16 @@ An Imageview with an easy Wobble/Mesh-Warp  capability(Well it thinks it does).
        />
 ```
 
-If you like you could load a custom wobble-mesh via the wobble attribute `app:wobble` i.e. `app:wobble=@drawable/your-wobble-mask`.
+If you like, you can load a custom wobble-mesh-mask via the wobble attribute `app:wobble` i.e. `app:wobble=@drawable/your-wobble-mask`.
   
   - your-wobble-mask must be a bitmap where each row of your mesh is a collection of pixels corresponding its nodes  also
-    each row of pixel nodes must be a different color from all other rows of pixels that make up the mesh [ **N.B** your node is just 1px in size] e.g.
+    each row of pixel nodes must be a different color from all other rows of pixels that make up the mesh e.g.
 
 ![wobb1](shots/wobb1.png)
 
   - Also if your-wobble-mask's dimension is not the same as your ImageView's dimension the mesh is scaled to fit the ImageView.
+  
+>  _**N.B** your node should be 1px in size]_
 
 **2. Warping The Mesh**
 
@@ -59,14 +61,14 @@ This is done via the wobble attribute `app:wobble` and there are three ways to w
    | by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**| fine |
    | by Shifting any node | `app:wobble=[r\|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**| pretty |
 
-in order to Shift multiple **rows/columns/nodes** at the same time here's how
+in order to Shift multiple **rows/columns/nodes** at the same time here's how:
 
 - via Shifting the rows
    - `app:wobble=[r#extra-rowIndices]rowIndex#(xShift,yShift)` e.g. **[r#2]2#(5,-20)**
 - via Shifting the columns
    - `app:wobble=[c#extra-columnIndices]columnIndex#(xShift,yShift)` e.g. **[c#-2]6#(0,10)** (*the minus indicates direction i.e. 2 columns above the supposed*)
 - via Shifting any node
-   - `app:wobble=[r|c#extra-nodes]rowIndex,columnIndex#(xShift,yShift)` e.g. **[r\|c#r2]1,2#(8,15)**,**[r\|c#c3]1,2#(8,15)** (*r2 = 2 extra nodes along corresponding row, c3 = 3 extra nodes along corresponding column*)
+   - `app:wobble=[r|c#extra-nodes]rowIndex,columnIndex#(xShift,yShift)` e.g. **[r\|c#r2]1,2#(8,15)**,**[r\|c#c3]1,2#(8,15)** (*r2 **=>** 2 extra nodes along corresponding row, c3 = 3 extra nodes along corresponding column*)
 
 ## Examples
 
