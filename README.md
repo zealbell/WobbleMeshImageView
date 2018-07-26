@@ -17,6 +17,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability(??Well it thinks it does!
 > **XML**
 
 **1. Cr8ting The Mesh**
+
  Ok before you go on... I am of the high opinion you would find this Article to be a great rolling ball
  of fine Jargon until you try your hands on the code... I also found it so too.
 
@@ -146,7 +147,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
             />
 ```
 
-> Just incase all have said is Jargon, here are some samples with some more meaningful meanings
+> Just incase all have said is Jargon(well let's hope so even if not), here are some samples with some more meaningful meanings
 
  | sample<br>`app:wobble` | meaning |
  |:---:|---------|
@@ -207,5 +208,12 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 | `getWobbleMask(int[] rowColors)`| *Bitmap* |
 | `getWobble()`| *String* |
 
+## Extra
+ incase you have interest in cr8ting Meshes with say 2000 nodes above and you are accidentally familiar with corel draw I would be
+ providing a gist where you could use a macro to get coordinates of selected nodes each time. Any time you draw yout mesh. I am 
+ very aware it might not be so perfect drawing pixel by pixel in corel draw without having dimensions not being exact even after taking
+ off the anti-aliasing. but if you use Photoshops I assume you have 5 heads to figure your way around as I have none extra to spare
+ or atleast suggest from (My head is in the dustbin, Yes I cut it off 2hrs ago). 
 
-> If you got here... so fast without listening to what I was saying up above... Well that's Sad(\# _\#)! You hurt my feelings... 
+> If you got here... so fast without listening to 1st Jargon what I was ranting up above... Well that's Sad(\# _\#)! You hurt my feelings... 
+> I honestly thought I was making sense...but now you've confirmed the unwanted.  
