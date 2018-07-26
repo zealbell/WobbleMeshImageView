@@ -2,7 +2,7 @@
 
 WobbleImageView
 =============
-An Imageview with an easy Wobble/Mesh-Warp  capability(`Well it thinks it does`).
+An Imageview with an easy Wobble/Mesh-Warp  capability(Well it thinks it does).
 
 ## Quick Start
 
@@ -59,7 +59,7 @@ This is done via the wobble attribute `app:wobble` and there are three ways to w
    | by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**| fine |
    | by Shifting any node | `app:wobble=[r\|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**| pretty |
 
-in order to Shift multiple rows/columns/nodes at the same time here's how
+in order to Shift multiple **rows/columns/nodes** at the same time here's how
 
 - via Shifting the rows
    - `app:wobble=[r#extra-rowIndices]rowIndex#(xShift,yShift)` e.g. **[r#2]2#(5,-20)**
@@ -147,7 +147,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
             />
 ```
 
-> Just incase all have said is Jargon(well let's hope so even if not), here are some samples with some more meaningful meanings
+> Just incase all have said is hasn't made sense(well let's hope so even if not), here are some samples with some more meaningful meanings
 
  | sample<br>`app:wobble` | meaning |
  |:---:|---------|
@@ -167,7 +167,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 
   ```java
   
-     WobbleMeshImageView woah;
+     WobbleMeshImageView woah;//please don't think of Noah, Not the Ark please!!! 
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
@@ -209,11 +209,11 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 | `getWobble()`| *String* |
 
 ## Extra
- incase you have interest in cr8ting Meshes with say 2000 nodes above and you are accidentally familiar with corel draw I would be
+ incase you have interest in cr8ting Meshes with say 2000 nodes above and you are accidentally familiar with corel-draw I would be
  providing a gist where you could use a macro to get coordinates of selected nodes each time. Any time you draw yout mesh. I am 
  very aware it might not be so perfect drawing pixel by pixel in corel draw without having dimensions not being exact even after taking
  off the anti-aliasing. but if you use Photoshops I assume you have 5 heads to figure your way around as I have none extra to spare
- or atleast suggest from (My head is in the dustbin, Yes I cut it off). 
+ or atleast suggest from (My head is in the dustbin, Yes I just cut it off). 
 
 > If you got here... so fast without listening to 1st Jargon what I was ranting up above... Well that's Sad(\# _\#)! You hurt my feelings... 
 > I honestly thought I was making sense...but now you've confirmed the unwanted.  
