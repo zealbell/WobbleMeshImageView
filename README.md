@@ -151,16 +151,16 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how
 
  | sample<br>`app:wobble` | meaning |
  |:---:|---------|
- | `[c]0#(0,5)` | shift column 0 by x=>0 and y=> 5  |
- | `[c]2#(10,0)` | shift column 2 by x=>10 and y=> 0  |
- | `[c#-1]2#(10,0)` | shift column 2 and column (2-1) by x=>10 and y=> 0 |
- | `[r\|c]1,8#(10,20)` | shift node @ (1,8) by x=>10 and y=> 20 |
- | `[r\|c#c2]1,8#(10,20)` | shift nodes @ (1,8),(1,9),(1,10) by x=>10 and y=> 20 |
- | `[r\|c#c-2]1,8#(10,20)` | shift nodes @ (1,8),(1,7),(1,6) by x=>10 and y=> 20 |
- | `[r\|c#r2]1,8#(10,20)` | shift nodes @ (1,8),(2,8),(3,8) by x=>10 and y=> 20 |
- | `[r]4#(6,5)` | shift row 4 by x=>6 and y=> 5 |
- | `[r#-3]5#(6,5)` | shift row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5 |
- | `[r#3]5#(6,5)` | shift row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5 |
+ | `[c]0#(0,5)` | shift column 0 by x=>0 and y=>5  |
+ | `[c]2#(10,0)` | shift column 2 by x=>10 and y=>0  |
+ | `[c#-1]2#(10,0)` | shift column 2 and column (2-1) by x=>10 and y=>0 |
+ | `[r\|c]1,8#(10,20)` | shift node @ (1,8) by x=>10 and y=>20 |
+ | `[r\|c#c2]1,8#(10,20)` | shift nodes @ (1,8),(1,9),(1,10) by x=>10 and y=>20 |
+ | `[r\|c#c-2]1,8#(10,20)` | shift nodes @ (1,8),(1,7),(1,6) by x=>10 and y=>20 |
+ | `[r\|c#r2]1,8#(10,20)` | shift nodes @ (1,8),(2,8),(3,8) by x=>10 and y=>20 |
+ | `[r]4#(6,5)` | shift row 4 by x=>6 and y=>5 |
+ | `[r#-3]5#(6,5)` | shift row 5,row 4,row 3,row 2 by x=>6 and y=>5 |
+ | `[r#3]5#(6,5)` | shift row 5,row 6,row 7,row 9 by x=>6 and y=>5 |
 
 
 > **JAVA**
@@ -210,7 +210,7 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how
 
 ## Extra
  incase you have interest in cr8ting Meshes with say 100 nodes and above and you are accidentally familiar with corel-draw I would be
- providing a gist where you could use a macro to get coordinates of selected nodes each time. Any time you draw yout mesh. I am 
+ providing a gist where you could use a macro to get coordinates of selected nodes each time. Any time you draw your mesh. I am 
  very aware it might not be so perfect drawing pixel by pixel in corel draw without having dimensions not being exact even after taking
  off the anti-aliasing. but if you use Photoshops I assume you have 5 heads to figure your way around as I have none extra to spare
  or atleast suggest from (My head is in the dustbin, Yes I just cut it off). 
