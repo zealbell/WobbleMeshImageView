@@ -18,7 +18,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability(??Well it thinks it does!
 
 **1. Cr8ting The Mesh**
  Ok before you go on... I am of the high opinion you would find this Article to be a great rolling ball
- of fine Jargon until you try your hands on the code. ..
+ of fine Jargon until you try your hands on the code... I also found it so too.
 
  The size of your Mesh is always **=** `(MeshWidth/wobbleColumns+1) * (MeshHeight/wobbleRows+1) * 2` and
  by default this is how create a new mesh over the ImageView
@@ -156,6 +156,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
  | `[r\|c]1,8#(10,20)` | shift node @ (1,8) by x=>10 and y=> 20 |
  | `[r\|c#c2]1,8#(10,20)` | shift nodes @ (1,8),(1,9),(1,10) by x=>10 and y=> 20 |
  | `[r\|c#c-2]1,8#(10,20)` | shift nodes @ (1,8),(1,7),(1,6) by x=>10 and y=> 20 |
+ | `[r\|c#r2]1,8#(10,20)` | shift nodes @ (1,8),(2,8),(3,8) by x=>10 and y=> 20 |
  | `[r]4#(6,5)` | shift row 4 by x=>6 and y=> 5 |
  | `[r#-3]5#(6,5)` | shift row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5 |
  | `[r#3]5#(6,5)` | shift row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5 |
@@ -206,6 +207,5 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 | `getWobbleMask(int[] rowColors)`| *Bitmap* |
 | `getWobble()`| *String* |
 
-> If you got here... so fast without listening to what I was saying up above... Well that was Rude! You hurt my feelings... 
-> I was  actually on to something. I am writing a software code to prevent readers from hurting my feelings. the worse part 
-> is it's not up to 1 line long? 
+
+> If you got here... so fast without listening to what I was saying up above... Well that's Sad(\# _\#)! You hurt my feelings... 
