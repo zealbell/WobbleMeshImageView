@@ -48,7 +48,7 @@ If you like, you can load a custom wobble-mesh-mask via the wobble attribute `ap
 
   - Also if your-wobble-mask's dimension is not the same as your ImageView's dimension the mesh is scaled to fit the ImageView.
   
->  _**N.B** your node should be 1px in size]_
+>  _**N.B** your node should be 1px in size_
 
 **2. Warping The Mesh**
 
