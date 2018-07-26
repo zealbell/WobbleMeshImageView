@@ -43,8 +43,7 @@ If you like you could load a custom wobble-mesh via the wobble attribute `app:wo
 
 ![wobb1](shots/wobb1.png)
 
-also if your-wobble-mask's dimension is not the same as your ImageView's dimension the mesh is scaled to fit the
-ImageView.
+  - Also if your-wobble-mask's dimension is not the same as your ImageView's dimension the mesh is scaled to fit the ImageView.
 
 **2. Warping The Mesh**
 
@@ -55,7 +54,7 @@ This is done via the wobble attribute `app:wobble` and there are three ways to w
    |----------|---------|--------|:---:|
    | by Shifting the rows | `app:wobble=[r]rowIndex#(xShift,yShift)` | **[r]2#(5,-20)**| cute |
    | by Shifting the columns | `app:wobble=[c]columnIndex#(xShift,yShift)` | **[c]2#(0,10)**| fine |
-   | by Shifting any node | `app:wobble=[r|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**| pretty |
+   | by Shifting any node | `app:wobble=[r\|c]rowIndex,columnIndex#(xShift,yShift)` | **[r\|c]1,2#(8,15)**| pretty |
 
 in order to Shift multiple rows/columns/nodes at the same time here's how
 
