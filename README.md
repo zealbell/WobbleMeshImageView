@@ -2,7 +2,7 @@
 
 WobbleImageView
 =============
-An Imageview with an easy Wobble/Mesh-Warp  capability.
+An Imageview with an easy Wobble/Mesh-Warp  capability(??Well it thinks it does!!).
 
 ## Quick Start
 
@@ -149,16 +149,16 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 > Just incase all have said is Jargon, here are some samples with some more meaningful meanings
 
  | sample<br>`app:wobble` | meaning |
- |---------|---------|
- | [c]0#(0,5) | shift column 0 by x=>0 and y=> 5  |
- | [c]2#(10,0) | shift column 2 by x=>10 and y=> 0  |
- | [c#-1]2#(10,0) | shift column 2 and column (2-1) by x=>10 and y=> 0 |
- | [r|c]1,8#(10,20) | shift node @ (1,8) by x=>10 and y=> 20 |
- | [r|c#c2]1,8#(10,20) | shift nodes @ (1,8),(1,9),(1,10) by x=>10 and y=> 20 |
- | [r|c#c-2]1,8#(10,20) | shift nodes @ (1,8),(1,7),(1,6) by x=>10 and y=> 20 |
- | [r]4#(6,5) | shift row 4 by x=>6 and y=> 5 |
- | [r#-3]5#(6,5) | shift row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5 |
- | [r#3]5#(6,5) | shift row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5 |
+ |:---:|---------|
+ | `[c]0#(0,5)` | shift column 0 by x=>0 and y=> 5  |
+ | `[c]2#(10,0)` | shift column 2 by x=>10 and y=> 0  |
+ | `[c#-1]2#(10,0)` | shift column 2 and column (2-1) by x=>10 and y=> 0 |
+ | `[r\|c]1,8#(10,20)` | shift node @ (1,8) by x=>10 and y=> 20 |
+ | `[r\|c#c2]1,8#(10,20)` | shift nodes @ (1,8),(1,9),(1,10) by x=>10 and y=> 20 |
+ | `[r\|c#c-2]1,8#(10,20)` | shift nodes @ (1,8),(1,7),(1,6) by x=>10 and y=> 20 |
+ | `[r]4#(6,5)` | shift row 4 by x=>6 and y=> 5 |
+ | `[r#-3]5#(6,5)` | shift row 5,rows 4,rows 3,rows 2 by x=>6 and y=> 5 |
+ | `[r#3]5#(6,5)` | shift row 5,rows 6,rows 7,rows 9 by x=>6 and y=> 5 |
 
 
 > **JAVA**
