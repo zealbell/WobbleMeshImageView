@@ -17,6 +17,8 @@ An Imageview with an easy Wobble/Mesh-Warp  capability.
 > **XML**
 
 **1. Cr8ting The Mesh**
+ Ok before you go on... I am of the high opinion you would find this Article to be a great rolling ball
+ of fine Jargon until you try your hands on the code. ..
 
  The size of your Mesh is always **=** `(MeshWidth/wobbleColumns+1) * (MeshHeight/wobbleRows+1) * 2` and
  by default this is how create a new mesh over the ImageView
@@ -58,11 +60,11 @@ This is done via the wobble attribute `app:wobble` and there are three ways to w
 
 in order to Shift multiple rows/columns/nodes at the same time here's how
 
-- by Shifting the rows
+- via Shifting the rows
    - `app:wobble=[r#extra-rowIndices]rowIndex#(xShift,yShift)` e.g. **[r#2]2#(5,-20)**
-- by Shifting the columns
+- via Shifting the columns
    - `app:wobble=[c#extra-columnIndices]columnIndex#(xShift,yShift)` e.g. **[c#-2]6#(0,10)** (*the minus indicates direction i.e. 2 columns above the supposed*)
-- by Shifting any node
+- via Shifting any node
    - `app:wobble=[r|c#extra-nodes]rowIndex,columnIndex#(xShift,yShift)` e.g. **[r\|c#r2]1,2#(8,15)**,**[r\|c#c3]1,2#(8,15)** (*r2 = 2 extra nodes along corresponding row, c3 = 3 extra nodes along corresponding column*)
 
 ## Examples
@@ -203,3 +205,7 @@ in order to Shift multiple rows/columns/nodes at the same time here's how
 | `getWobbleMask()`| *Bitmap* |
 | `getWobbleMask(int[] rowColors)`| *Bitmap* |
 | `getWobble()`| *String* |
+
+> If you got here... so fast without listening to what I was saying up above... Well that was Rude! You hurt my feelings... 
+> I was  actually on to something. I am writing a software code to prevent readers from hurting my feelings. the worse part 
+> is it's not up to 1 line long? 
