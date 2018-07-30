@@ -23,7 +23,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability(Well it thinks it does).
  Ok before you go on... I am of the high opinion you would find this Article to be a great rolling ball
  of fine Jargon until you try your hands on the code... I also found it so too.
 
- The size of your Mesh is always **=** `(MeshWidth/wobbleColumns+1) * (MeshHeight/wobbleRows+1) * 2` and
+ The size of your Mesh is always **=** `((MeshWidth/wobbleColumns)+1) * ((MeshHeight/wobbleRows)+1) * 2` and
  by default this is how to create a new mesh over the ImageView
 
 <img src="shots/wobb0.png" width="49%">
