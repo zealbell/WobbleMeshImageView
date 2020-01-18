@@ -227,5 +227,5 @@ bad for him the doctor said at that degree he was blind to the physical world th
 he said only a 10yrs in advance coreldraw update could cure the damage
 
  
-> If you got here... so fast without listening to the 1st Jargon ranted, I must say am dissappointed in you. (\# _\#)! You hurt my feelings... 
+> If you got here... so fast, I must say am dissappointed in you. (\# _\#)! You hurt my feelings... 
 > I honestly thought I was on to something ...but now you've confirmed the unwanted.  
