@@ -171,7 +171,7 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how:
 
   ```java
   
-     WobbleMeshImageView woah;//please don't think of Noah, Not the Ark please!!! 
+     WobbleMeshImageView woah;//please don't think of Noah, Not the Ark please!!! ( one can't be sure somebody didn't pronounce Wo-Ah these days, but I hope you didn't)
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
