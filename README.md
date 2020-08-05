@@ -230,5 +230,5 @@ he said only a 10yrs in advance coreldraw update could cure the damage.
 > but at the very least we can all agree
 > creativity is a function of stupidity,  
 > Mathematically it can be expressed as
-> Creativity = Stupidity + Craziness
+> Creativity = Stupidity + Craziness,
 > I am not in any way proving am stupid, I am just saying I am.
