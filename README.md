@@ -227,9 +227,9 @@ bad for him the doctor said at that degree he was too blind to the physical worl
 he said only a 10yrs in advance coreldraw update could cure the damage
 
  
-> Ok that was really stupid! no doubt 
-> But at the very least we can all agree
-> creativity is a function of stupidity  
-> Mathematically this can be expressed as
+> Ok that was really stupid!!! no doubt! 
+> but at the very least we can all agree
+> creativity is a function of stupidity,  
+> Mathematically it can be expressed as
 > Creativity = Stupidity + Craziness
-> I am not in any way proving am stupid, just a bit unsane if that helps.
+> I am not in any way proving am stupid, I am just a tiny bit unsane if that helps.
