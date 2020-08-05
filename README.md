@@ -214,15 +214,15 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how:
 
 ## Extra
  Incase you have interest in cr8ting Meshes with say 100 nodes and above and you are accidentally familiar with corel-draw I have
- provided a [`gist`](https://gist.github.com/54LiNKeR/8764e61c008d357d2cabfea77905746c) where you can use a macro to get coordinates of selected nodes each time. Any time you draw your mesh. I am 
- very aware it might not be so perfect drawing pixel by pixel in corel draw without having dimensions not being exact even after taking
- off the anti-aliasing. but if you use photo-shop I assume you can figure your way around. I just hate photo-shop (I mean it i's better than corel draw but yes the more reason)  The first time I used photo-shop my fingers got paralyzed and
+ provided a [`gist`](https://gist.github.com/54LiNKeR/8764e61c008d357d2cabfea77905746c) where you can use a macro to get coordinates of selected nodes any time you draw your mesh. I am 
+ very aware it might not be so perfect drawing pixel by pixel in corel draw having dimensions not being exact even after taking
+ off the anti-aliasing but if you use photo-shop well GFY (Yes it is what you're thinking, but I didn't say it). I just hate photo-shop (I mean, it's better than corel draw but yes the more reason). The first time I used photo-shop my fingers got paralyzed and
 my left thumb just wouldn't tap the right click every time I was about to engage the bezier tool, worst was the erazer tool, I almost lost my vision, visited 
- an opthamologist who recommended coreldraw he told me as I dragged the eraser and noticed my pupils started to shrink, they were actually 
-erasing my eye cells away that was why I erased the entire document I was working on(I was trying to spice up a
-client's photo), my pupils got too small to see well so things appeared bigger (I mean, a small line suddenly became an entire document in just 2 minutes). The doctor adviced I should update my corel draw to the latest version
-to make the healing process faster. he told me about a dude whose pupil had gone to some next level 4nm extreme by the eraser tool, felt very
-bad for him, the doctor said at that degree he was too blind to the physical world and that he could only see unicellular organisms because his short sightedness was just 10nm field of view, the scary part was that 
+ an opthamologist who recommended coreldraw he told me as I dragged the eraser tool my pupils started to shrink because it was actually 
+erasing my eye cells, that was why I erased the entire document I was working on(I was trying to spice up a
+client's photo). My pupils got so small that things appeared bigger (I mean, a small line suddenly became an entire document in just 2 minutes at a point). The doctor adviced I should update my corel draw to the latest version
+to make the healing process faster (Yes it worked) after he told me about a dude whose pupil had gone to some next level 4nm extreme by the same eraser tool, felt very
+bad for the dude (surprisingly I took my feelings back and applied them to myself), the doctor said at that degree he was too blind to the physical world and that he could only see unicellular organisms because his short sightedness was just 10nm field of view, the scary part was that 
 he said only a 10yrs in advance coreldraw update could cure the damage.
 
  
