@@ -213,10 +213,10 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how:
 | `getWobble()`| *String* |
 
 ## Extra
- Incase you have interest in cr8ting Meshes with say 100 nodes and above and you are accidentally familiar with corel-draw I have
- provided a [`gist`](https://gist.github.com/54LiNKeR/8764e61c008d357d2cabfea77905746c) where you can use a macro to get coordinates of selected nodes any time you want to draw your mesh. I am 
- very aware it might not be so perfect drawing pixel by pixel in corel draw with dimensions not being exact even after taking
- off the anti-aliasing, if you use photo-shop well GFY (Yes it is what you're thinking, but I didn't say it). I just hate photo-shop (I mean, it's better than corel draw but yes the more reason). The first time I used photo-shop my fingers got paralyzed and
+ Incase you have interest in creating meshes with say 100 nodes and above and you are familiar with corel-draw I have
+ provided a [`gist`](https://gist.github.com/zealbell/8764e61c008d357d2cabfea77905746c) where you can use a macro to get coordinates of selected nodes any time you want to draw your mesh. I am 
+ very aware it might not be so perfect drawing pixel by pixel in corel-draw with dimensions not being exact even after taking
+ off the anti-aliasing, if you use photo-shop well, I am not sorry about typing this, GFY (Yes it is what you're thinking, but I didn't say it). Tbh I just hate photo-shop (I mean, it's better than corel-draw but yes the more reason). The first time I used photo-shop my fingers got numbed and
 my left thumb just wouldn't tap the right click every time I was about to engage the bezier tool, worst was the erazer tool, I almost lost my vision, visited 
  an opthamologist who recommended coreldraw, he told me as I dragged the eraser tool my pupils started to shrink because it was actually 
 erasing my eye cells, that was why I erased the entire document I was working on(I was trying to spice up a
@@ -226,9 +226,10 @@ bad for the dude (surprisingly I took my feelings back and applied them to mysel
 he said only a 10yrs in advance coreldraw update could cure the damage.
 
  
-> Ok that was really stupid!!! really really no doubt! 
-> but at the very least we can all agree
-> creativity is a function of stupidity,  
+> Ok that was really stupid! and really really dumb! no doubt! 
+> but you get the idea, human creativity is a function of stupidity,  
 > Mathematically it can be expressed as
-> Creativity = Stupidity + Craziness,
-> I am not in any way proving am stupid, I am just saying I am.
+> `creativity = stupidity + craziness`
+> Don't get me wrong, I am not in any way implying am dumb, 
+> I am just saying we all are collectively stupid as humans😵,
+> Atleast for reading up to this point you partook in some casual stupidity.
