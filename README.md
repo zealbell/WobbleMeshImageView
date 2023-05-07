@@ -20,8 +20,7 @@ An Imageview with an easy Wobble/Mesh-Warp  capability(Well it thinks it does).
 
 **1. Cr8ting The Mesh**
 
- Ok before you go on... I am of the high opinion you would find this Article to be a great rolling ball
- of fine Jargon until you try your hands on the code... I also found it so too.
+**Disclosure:*** ok before you go on... I have to inform you that there may be some jargon included in the fine prints, I encourage you not to allow that bring you down concerning your quest to wobble, do not allow anything stop or discourage you from reading through, also be sure to try your hands on the code... so it all makes sense
 
  The size of your Mesh is always **=** `((MeshWidth/wobbleColumns)+1) * ((MeshHeight/wobbleRows)+1) * 2` and
  by default this is how to create a new mesh over the ImageView
