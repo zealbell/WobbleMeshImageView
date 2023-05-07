@@ -214,22 +214,29 @@ in order to Shift multiple **rows/columns/nodes** at the same time here's how:
 
 ## Extra
  Incase you have interest in creating meshes with say 100 nodes and above and you are familiar with corel-draw I have
- provided a [`gist`](https://gist.github.com/zealbell/8764e61c008d357d2cabfea77905746c) where you can use a macro to get coordinates of selected nodes any time you want to draw your mesh. I am 
- very aware it might not be so perfect drawing pixel by pixel in corel-draw with dimensions not being exact even after taking
- off the anti-aliasing, if you use photo-shop well, I am not sorry about typing this, GFY (Yes it is what you're thinking, but I didn't say it). Tbh I just hate photo-shop (I mean, it's better than corel-draw but yes the more reason). The first time I used photo-shop my fingers got numbed and
-my left thumb just wouldn't tap the right click every time I was about to engage the bezier tool, worst was the erazer tool, I almost lost my vision, visited 
- an opthamologist who recommended coreldraw, he told me as I dragged the eraser tool my pupils started to shrink because it was actually 
-erasing my eye cells, that was why I erased the entire document I was working on(I was trying to spice up a
-client's photo). My pupils got so small that things appeared bigger (I mean, a small line suddenly became an entire document in just 2 minutes of clicking, it was wonderful). The doctor adviced I should update my corel draw to the latest version
-to make the healing process faster (Yes it worked) after he told me about a dude whose pupil had gone to some next level 4nm extreme by the same eraser tool, felt very
-bad for the dude (surprisingly I took my feelings back and applied them to myself), the doctor said at that degree he was too blind to the physical world and that he could only see unicellular organisms because his short sightedness was just 10nm field of view, the scary part was that 
-he said only a 10yrs in advance coreldraw update could cure the damage.
+ provided a [`gist`](https://gist.github.com/zealbell/8764e61c008d357d2cabfea77905746c) where you can use a macro to get 
+coordinates of selected nodes any time you want to draw your mesh. I am 
+ very aware one can't be so perfect drawing pixel by pixel in corel-draw, most especially with dimensions not being exact 
+even after taking off the anti-aliasing, if you use photo-shop well, I am not sorry about typing this, GFY (Yes it is what 
+you're thinking, but I didn't say it). Tbh I just hate photo-shop (I mean, it's better than corel-draw but yes the more reason). 
+The first time I used photo-shop my fingers got numbed, my left thumb just wouldn't tap the right click button every time I was about 
+to engage the bezier tool, worst was the erazer tool, I almost lost my vision, visited an opthamologist who recommended corel-draw, 
+he told me as I dragged the eraser tool my pupils started to shrink because it was actually erasing my eye cells, that was why I 
+erased the entire document I was previously working on (I was trying to spice up a client's photo). My pupils got so small that things appeared 
+bigger (I mean, a small line suddenly became an entire document in just 2 minutes of clicking, it wasn't wonderful). The opthamologist adviced 
+I should update my corel-draw to the latest version to make the healing process faster (Yes it worked) and then after the last checkup we had 
+post healing clinic gist, he told me about a dude whose pupil had gone to next level and beyond, some 4nm kevin-hart-extreme, the short sightedness 
+was shortly short, obviously the eraser tool was the culprit parasite, I felt very bad for the dude but not surprisingly I took my feelings back because 
+I needed some more sanity, moreover the doctor said at that stage the infection was communicable at the slight provocation of a thought about using photoshop, 
+he was too blind to observe the physical world, he could only see unicellular 
+organisms because his short sightedness was about a 10nm field of view, the scary part was that he said only a 10yrs in advance corel-draw update 
+could undo the damage.
 
  
 > Ok that was really stupid! and really really dumb! no doubt! 
 > but you get the idea, human creativity is a function of stupidity,  
-> Mathematically it can be expressed as
-> `creativity = stupidity + craziness`
+> Mathematically --> `creativity = stupidity + craziness`
 > Don't get me wrong, I am not in any way implying am dumb, 
 > I am just saying we all are collectively stupid as humans😵,
-> Atleast for reading up to this point you partook in some casual stupidity.
+> Atleast for reading up to this point you partook in some curious and 
+casual stupidity👀.
