@@ -6,6 +6,8 @@ WobbleImageView
 =============
 This ImageView proudly supports wobble and mesh-warp effects—whether or not reality agrees is a different matter.
 
+No one asked for this library. It was built unprovoked, without funding, oversight, or emotional stability. And now it exists.
+
 ## Quick Start
 
 > **GRADLE**
