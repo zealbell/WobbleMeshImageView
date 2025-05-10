@@ -4,7 +4,7 @@
 
 WobbleImageView
 =============
-An Imageview with an easy Wobble/Mesh-Warp  capability(Well it thinks it does).
+This ImageView proudly supports wobble and mesh-warp effects—whether or not reality agrees is a different matter.
 
 ## Quick Start
 
